@@ -1,0 +1,216 @@
+{
+ "source": "solver/graph.py build_graph via indexer/analytics/survival_scan.py (HyperSync, events only), past_owners empty (D20)",
+ "chainId": 10143,
+ "block": 66494089,
+ "measuredAt": "2026-10-05T17:30:16Z",
+ "schema": "solver/schema_reference.json filter reference",
+ "counts": {
+  "agentsMinted": 1949,
+  "transfers": 1003,
+  "sharedWallets": 37,
+  "agentsOnSharedWallets": 892,
+  "feedbacks": 1862,
+  "revoked": 1,
+  "couples": 157,
+  "absValueGe1e38": 0
+ },
+ "selfRatingsByController": {},
+ "edges": [
+  {
+   "client": "0x05307c61088b789aff8955744f0c96b1035f79b4",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x0b92f0730f93d52baa859ce52a050414a5afda1d",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x1307e783e681ba50157b7cfc0a3382783b765ac8",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x27820543334c6e1d17c456f41fc0b176f10d8cfd",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x27bdf576de93f45b99d36478af5b8bef7c5f216e",
+   "agent": "1923",
+   "w": 2000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x2bca4fb52fdba2f0603fe1ee7d66da8d0d293af6",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x2c394912b207a03ae73c36c97d90d6150803ebae",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x3082fb2fb6597d9b33814ed4b7a0f90d343b203a",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x3bcc963d867f4b698c93065788427d472563acfa",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x3e7a736425a4131487b07d644b176ec5824bbb30",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x45a239e4f10058b3f2ce313bec9b299e495932a9",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x462481d0d8cb95c6ce3723ad0539c5a9a77bbc96",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x492c67d46701d9ffb05a3e22fb9399a87008ddc2",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x54b09636112a25310232fb36204ffb7737ada93a",
+   "agent": "1923",
+   "w": -2000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x56665935703ece0d7b16193035deafa5cc679a85",
+   "agent": "1761",
+   "w": 8000,
+   "tag1": "quality",
+   "feedbackIndex": "3"
+  },
+  {
+   "client": "0x56665935703ece0d7b16193035deafa5cc679a85",
+   "agent": "1763",
+   "w": 8000,
+   "tag1": "quality",
+   "feedbackIndex": "3"
+  },
+  {
+   "client": "0x66113881ca368c3ce67c3efb0ac624883c7c0c52",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x7c702611e6722a767fc4b285a07b58c7bdb859f7",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x8b063171dd9d6bfad4f285e8941d1025989ef7d8",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x8f4b080f83a98cc41d8c16f65b7ed1548a0fe781",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xa42b45e66367306646583e1ced4db5ec67575eeb",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xab0f8620b578f802c59ebbec8da39a8cbd251cd3",
+   "agent": "1924",
+   "w": -2000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xaf1ab7d56c5cb38433dd99bc57c8f9954ae1b672",
+   "agent": "1924",
+   "w": 2000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xb6e8b2692cdc3a31280dca8e9c8b88bb5e436f24",
+   "agent": "1",
+   "w": 8000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xc53f2456b7fd9f779c02108a66ce5481e5d4272d",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xd40d8538ad075740a88852679af17110ff573c1a",
+   "agent": "1851",
+   "w": 6000,
+   "tag1": "starred",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xe4de9b1718d668c275b92596e2e309058c98e0b6",
+   "agent": "1924",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xeeab77b64f6a55b1cde4a912900b3ff5d5e3d20a",
+   "agent": "1923",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  }
+ ]
+}

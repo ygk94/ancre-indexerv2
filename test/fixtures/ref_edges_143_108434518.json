@@ -1,0 +1,99 @@
+{
+ "source": "solver/graph.py build_graph via indexer/analytics/survival_scan.py (HyperSync, events only), past_owners empty (D20)",
+ "chainId": 143,
+ "block": 108434518,
+ "measuredAt": "2026-10-05T17:29:21Z",
+ "schema": "solver/schema_reference.json filter reference",
+ "counts": {
+  "agentsMinted": 10261,
+  "transfers": 72,
+  "sharedWallets": 178,
+  "agentsOnSharedWallets": 1773,
+  "feedbacks": 9188,
+  "revoked": 0,
+  "couples": 7771,
+  "absValueGe1e38": 117
+ },
+ "selfRatingsByController": {
+  "agentWallet": 78
+ },
+ "edges": [
+  {
+   "client": "0x0730536018541c5149a049d35528a76c2c8f1e6b",
+   "agent": "18",
+   "w": 10000,
+   "tag1": "vouch",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "10180",
+   "w": 8400,
+   "tag1": "agent_rating:data_collection",
+   "feedbackIndex": "2"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "10181",
+   "w": 9000,
+   "tag1": "agent_rating:data_collection",
+   "feedbackIndex": "13"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "10182",
+   "w": 9000,
+   "tag1": "agent_rating:data_collection",
+   "feedbackIndex": "28"
+  },
+  {
+   "client": "0x70b83f0f903e5ff3a84e6691cfcaa241448bdca0",
+   "agent": "118",
+   "w": 8000,
+   "tag1": "escrow-rating",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x794c94f1b5e455c1dba27bb28c6085db0fe544f9",
+   "agent": "4",
+   "w": 10000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xb6e8b2692cdc3a31280dca8e9c8b88bb5e436f24",
+   "agent": "1",
+   "w": 8000,
+   "tag1": "quality",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "agent": "2",
+   "w": 10000,
+   "tag1": "vouch",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "agent": "3",
+   "w": 10000,
+   "tag1": "review",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "agent": "4",
+   "w": -10000,
+   "tag1": "slash",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xf7d5543dfff21ac729626579216776412132fe74",
+   "agent": "18",
+   "w": 10000,
+   "tag1": "review",
+   "feedbackIndex": "1"
+  }
+ ]
+}

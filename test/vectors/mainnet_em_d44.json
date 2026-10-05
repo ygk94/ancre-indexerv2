@@ -1,0 +1,813 @@
+{
+ "format": "ancre-cert-v1",
+ "label": "mainnet_em_d44",
+ "notes": "D44 (repli owner, drapeau en attente de Hugo) : execution.market, schéma d'essai (tags executor/requester en endorsement [0,50,100], NON normatif), ancres = 2 noteurs EM. Lignes VIA_OWNER : les workers ont agentWallet = 0 après transfert.",
+ "alignedWith": "contracts/ENCODING.md unified v1 (2026-10-01), AnchoredReputation v1 (integration 02+04)",
+ "identityBlock": 108835675,
+ "set": {
+  "anchors": [
+   "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+   "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174"
+  ],
+  "lambdas": [
+   "500000000000000000",
+   "500000000000000000"
+  ],
+  "alphaN": 1,
+  "alphaD": 3,
+  "minAnchors": 2,
+  "tagSchemaHash": "0xd39fad305a4b5e9a8aadb9784a63174b43641e8cd3c8bc210f7908d70c76c6c5",
+  "tags": [
+   {
+    "tag": "executor_rating:data_collection",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "executor_rating:research",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "requester_rating:data_collection",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "executor_rating:knowledge_access",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "requester_rating:research",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "requester_rating:knowledge_access",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   }
+  ],
+  "policy": {
+   "theta": "1000000000000000",
+   "rhoN": 1,
+   "rhoD": 2,
+   "minAnchors": 2,
+   "vetoQuorum": 1,
+   "vetoMax": -1,
+   "maxAge": 288000,
+   "minRefresh": 600,
+   "slackRefresh": "0",
+   "eLowMax": "10000000000000000",
+   "strictTransfer": true,
+   "registryVerified": true,
+   "ownerFallback": true,
+   "submitters": []
+  },
+  "setId": "0xb7ba916267458176985b7c45e4fe683b96cd5f157a0516800425582f2e9184ee"
+ },
+ "nCert": 13,
+ "nodes": [
+  {
+   "i": 0,
+   "kind": "anchor",
+   "address": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+   "hasRow": true
+  },
+  {
+   "i": 1,
+   "kind": "anchor",
+   "address": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+   "hasRow": true
+  },
+  {
+   "i": 2,
+   "kind": "agent",
+   "agentId": 10168,
+   "owner": "0x64dbe996e626260f21f5c4fad3c9ba209978c368",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 3,
+   "kind": "agent",
+   "agentId": 10169,
+   "owner": "0x5975442e9608f71cea6e9b1f3841b5a045e0500d",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 4,
+   "kind": "agent",
+   "agentId": 10180,
+   "owner": "0x76e9be89a3be6c1bf581a1f4519cb82dca9c57b3",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 5,
+   "kind": "agent",
+   "agentId": 10181,
+   "owner": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 6,
+   "kind": "agent",
+   "agentId": 10182,
+   "owner": "0x350ef06f11e87731476d567b3e5e5d865dcd6657",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 7,
+   "kind": "agent",
+   "agentId": 10184,
+   "owner": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 8,
+   "kind": "agent",
+   "agentId": 10189,
+   "owner": "0xc059b9cd5b7421a28f9259adb4511418fd548b5e",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 9,
+   "kind": "agent",
+   "agentId": 10190,
+   "owner": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 10,
+   "kind": "agent",
+   "agentId": 10221,
+   "owner": "0x9688385469cd5d216fd5a89eb03ec7fd0e0bd92d",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 11,
+   "kind": "agent",
+   "agentId": 10223,
+   "owner": "0xedc637d4b1bb9069753cc9335942be932083d2d0",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  },
+  {
+   "i": 12,
+   "kind": "agent",
+   "agentId": 10261,
+   "owner": "0xa3279f744438f83bc75ce9f8a8282c448f97cc8a",
+   "agentWallet": "0x0000000000000000000000000000000000000000",
+   "hasRow": true
+  }
+ ],
+ "rows": [
+  {
+   "u": 0,
+   "source": null,
+   "via": "anchor",
+   "aliasOf": null,
+   "sPlus": 56000,
+   "bPlus": 56000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10168,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 3,
+     "w": 8000,
+     "feedbackIndex": 2,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10169,
+     "tag1": "requester_rating:research"
+    },
+    {
+     "dst": 4,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10180,
+     "tag1": "executor_rating:knowledge_access"
+    },
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 5,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10181,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 3,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10182,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 8,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10189,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 1,
+   "source": null,
+   "via": "anchor",
+   "aliasOf": null,
+   "sPlus": 60000,
+   "bPlus": 60000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10168,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 4,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10180,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 6,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 7,
+     "w": 10000,
+     "feedbackIndex": 2,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10184,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 8,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10189,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 10,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10221,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 2,
+   "source": "0x64dbe996e626260f21f5c4fad3c9ba209978c368",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 34000,
+   "bPlus": 34000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 4,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x64dbe996e626260f21f5c4fad3c9ba209978c368",
+     "agentId": 10180,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x64dbe996e626260f21f5c4fad3c9ba209978c368",
+     "agentId": 10181,
+     "tag1": "requester_rating:research"
+    },
+    {
+     "dst": 6,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x64dbe996e626260f21f5c4fad3c9ba209978c368",
+     "agentId": 10182,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 9,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x64dbe996e626260f21f5c4fad3c9ba209978c368",
+     "agentId": 10190,
+     "tag1": "executor_rating:research"
+    }
+   ]
+  },
+  {
+   "u": 3,
+   "source": "0x5975442e9608f71cea6e9b1f3841b5a045e0500d",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 20000,
+   "bPlus": 20000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 3,
+     "client": "0x5975442e9608f71cea6e9b1f3841b5a045e0500d",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 7,
+     "w": 10000,
+     "feedbackIndex": 2,
+     "client": "0x5975442e9608f71cea6e9b1f3841b5a045e0500d",
+     "agentId": 10184,
+     "tag1": "executor_rating:research"
+    }
+   ]
+  },
+  {
+   "u": 4,
+   "source": "0x76e9be89a3be6c1bf581a1f4519cb82dca9c57b3",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 18000,
+   "bPlus": 18000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 2,
+     "client": "0x76e9be89a3be6c1bf581a1f4519cb82dca9c57b3",
+     "agentId": 10181,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 3,
+     "client": "0x76e9be89a3be6c1bf581a1f4519cb82dca9c57b3",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 5,
+   "source": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 60000,
+   "bPlus": 60000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10168,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 4,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10180,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 6,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 7,
+     "w": 10000,
+     "feedbackIndex": 2,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10184,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 8,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10189,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 10,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xaf95b213f44f0177e3a82e2d959524dd1e2a1174",
+     "agentId": 10221,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 6,
+   "source": "0x350ef06f11e87731476d567b3e5e5d865dcd6657",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 16000,
+   "bPlus": 16000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 4,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x350ef06f11e87731476d567b3e5e5d865dcd6657",
+     "agentId": 10180,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 12,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x350ef06f11e87731476d567b3e5e5d865dcd6657",
+     "agentId": 10261,
+     "tag1": "requester_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 7,
+   "source": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 56000,
+   "bPlus": 56000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10168,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 3,
+     "w": 8000,
+     "feedbackIndex": 2,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10169,
+     "tag1": "requester_rating:research"
+    },
+    {
+     "dst": 4,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10180,
+     "tag1": "executor_rating:knowledge_access"
+    },
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 5,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10181,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 3,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10182,
+     "tag1": "executor_rating:research"
+    },
+    {
+     "dst": 8,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3aebb73a33377f0d6fc2195f83559635adee8408",
+     "agentId": 10189,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 8,
+   "source": "0xc059b9cd5b7421a28f9259adb4511418fd548b5e",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 36000,
+   "bPlus": 36000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0xc059b9cd5b7421a28f9259adb4511418fd548b5e",
+     "agentId": 10181,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 3,
+     "client": "0xc059b9cd5b7421a28f9259adb4511418fd548b5e",
+     "agentId": 10182,
+     "tag1": "executor_rating:knowledge_access"
+    },
+    {
+     "dst": 7,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0xc059b9cd5b7421a28f9259adb4511418fd548b5e",
+     "agentId": 10184,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 10,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xc059b9cd5b7421a28f9259adb4511418fd548b5e",
+     "agentId": 10221,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 9,
+   "source": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 54400,
+   "bPlus": 54400,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+     "agentId": 10168,
+     "tag1": "requester_rating:research"
+    },
+    {
+     "dst": 3,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+     "agentId": 10169,
+     "tag1": "executor_rating:knowledge_access"
+    },
+    {
+     "dst": 4,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+     "agentId": 10180,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 1,
+     "client": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+     "agentId": 10181,
+     "tag1": "requester_rating:research"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 2,
+     "client": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    },
+    {
+     "dst": 11,
+     "w": 8400,
+     "feedbackIndex": 1,
+     "client": "0x7fd9f9e51c9a94b3bca2082c8332cbf708b0b529",
+     "agentId": 10223,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 10,
+   "source": "0x9688385469cd5d216fd5a89eb03ec7fd0e0bd92d",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 8000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 2,
+     "client": "0x9688385469cd5d216fd5a89eb03ec7fd0e0bd92d",
+     "agentId": 10181,
+     "tag1": "requester_rating:knowledge_access"
+    }
+   ]
+  },
+  {
+   "u": 11,
+   "source": "0xedc637d4b1bb9069753cc9335942be932083d2d0",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 18000,
+   "bPlus": 18000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 5,
+     "w": 8000,
+     "feedbackIndex": 2,
+     "client": "0xedc637d4b1bb9069753cc9335942be932083d2d0",
+     "agentId": 10181,
+     "tag1": "requester_rating:data_collection"
+    },
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xedc637d4b1bb9069753cc9335942be932083d2d0",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  },
+  {
+   "u": 12,
+   "source": "0xa3279f744438f83bc75ce9f8a8282c448f97cc8a",
+   "via": "owner",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa3279f744438f83bc75ce9f8a8282c448f97cc8a",
+     "agentId": 10182,
+     "tag1": "executor_rating:data_collection"
+    }
+   ]
+  }
+ ],
+ "vectors": {
+  "t": [
+   [
+    "333333333333333333",
+    "0",
+    "55594104666421130",
+    "36055462164204896",
+    "121145676018912716",
+    "100133318580392001",
+    "169691252682353555",
+    "31222248461429825",
+    "54525398309896311",
+    "10900804836553162",
+    "21223220270024353",
+    "1122141674351060",
+    "56563750894117851"
+   ],
+   [
+    "0",
+    "333333333333333333",
+    "54557209620608708",
+    "6730465032341093",
+    "114020645164660796",
+    "87273238664534800",
+    "151929745334040973",
+    "56904727586400228",
+    "53508435887032993",
+    "10697492082472295",
+    "56643033164028494",
+    "1101212420254500",
+    "50643248444680324"
+   ]
+  ],
+  "ownerFp": [
+   "0",
+   "0",
+   "6037561424643408744",
+   "4053720839581880333",
+   "5880777720251307955",
+   "1555189778438820212",
+   "4494132309843076695",
+   "240263312429712392",
+   "3769816460647762782",
+   "230470792812475689",
+   "3476435852052912429",
+   "6431912756953469648",
+   "2893611433564032138"
+  ]
+ },
+ "expected": {
+  "residualMode": "contract",
+  "subSolution": true,
+  "iterationsFromZero": 99,
+  "r": [
+   "49",
+   "49"
+  ],
+  "e": [
+   "147",
+   "147"
+  ],
+  "eEff": "148",
+  "qEff": "0",
+  "mass": "984426749313189364",
+  "distrustMass": "0",
+  "d": [
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0"
+  ],
+  "graphRoot": "0xa54de1877fe8732cc6e3493d0678afb1b79a5b28cc457b0045788e5bd833642a",
+  "vectorRoot": "0x14c2cc938411623a4fcb1d9c9915ac5300c169521cf3040e701caf8f5b654851",
+  "tight": {
+   "r": [
+    "40",
+    "37"
+   ],
+   "e": [
+    "120",
+    "111"
+   ]
+  }
+ },
+ "calldata": {
+  "W": 2,
+  "newNodes": "0x01000027b801000027b901000027c401000027c501000027c601000027c801000027cd01000027ce01000027ed01000027ef0100002815",
+  "vectors": "0x04a03ce68d21555500000000000000000000000000000000000000000000000004a03ce68d215555000000000000000000c5828b2c3f778a00c1d37e3b5f76c453c9ba209978c3680080184076828d600017e952816d06653841b5a045e0500d01ae6559b92e8dcc0195152c3419b83c519cb82dca9c57b30163beb9042a504101360e8c54ff5b10159524dd1e2a1174025add4b959f6b93021bc34c6573798d3e5e5d865dcd6657006eec7834a1ec4100ca2a8c59d3e7e403559635adee840800c1b68f957f807700be19a391888aa134511418fd548b5e0026ba39680c71ca0026014ff79035670332cbf708b0b529004b6668092f46a100c93c89debe1a4e303ec7fd0e0bd92d0003fc94f7e329d40003e98bff21ab245942be932083d2d000c8f46e873523db00b3ebc421d1288428282c448f97cc8a",
+  "rows": "0x020000000d00000006000227100000000100031f4000000002000427100000000100051f4000000005000627100000000300082710000000010001000600022710000000010004271000000001000627100000000600072710000000020008271000000001000a2710000000010002900464dbe996e626260f21f5c4fad3c9ba209978c36800041f400000000100051f400000000100061f40000000010009271000000001000390025975442e9608f71cea6e9b1f3841b5a045e0500d000627100000000300072710000000020004900276e9be89a3be6c1bf581a1f4519cb82dca9c57b300051f4000000002000627100000000300059006af95b213f44f0177e3a82e2d959524dd1e2a117400022710000000010004271000000001000627100000000600072710000000020008271000000001000a27100000000100069002350ef06f11e87731476d567b3e5e5d865dcd665700041f4000000001000c1f4000000001000790063aebb73a33377f0d6fc2195f83559635adee8408000227100000000100031f4000000002000427100000000100051f40000000050006271000000003000827100000000100089004c059b9cd5b7421a28f9259adb4511418fd548b5e00051f4000000001000627100000000300071f4000000001000a271000000001000990067fd9f9e51c9a94b3bca2082c8332cbf708b0b52900021f40000000010003271000000001000427100000000100051f40000000010006271000000002000b20d000000001000a90019688385469cd5d216fd5a89eb03ec7fd0e0bd92d00051f4000000002000b9002edc637d4b1bb9069753cc9335942be932083d2d000051f40000000020006271000000001000c9001a3279f744438f83bc75ce9f8a8282c448f97cc8a0006271000000001"
+ }
+}

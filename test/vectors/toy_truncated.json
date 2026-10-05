@@ -1,0 +1,262 @@
+{
+ "format": "ancre-cert-v1",
+ "label": "toy_truncated",
+ "notes": "Jouet, troncature des lignes de t <= 0,1 WAD : marge (1−α)·t_u ajoutée à r.",
+ "alignedWith": "contracts/ENCODING.md unified v1 (2026-10-01), AnchoredReputation v1 (integration 02+04)",
+ "identityBlock": 0,
+ "set": {
+  "anchors": [
+   "0x1111111111111111111111111111111111111111",
+   "0x2222222222222222222222222222222222222222"
+  ],
+  "lambdas": [
+   "500000000000000000",
+   "500000000000000000"
+  ],
+  "alphaN": 1,
+  "alphaD": 3,
+  "minAnchors": 2,
+  "tagSchemaHash": "0x398cef5a41faccef105582b3535a06fe4032a67af322e46c84e4109d15ca868e",
+  "tags": [
+   {
+    "tag": "vouch",
+    "min": "0",
+    "neutral": "0",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "review",
+    "min": "-1000000000000000000",
+    "neutral": "0",
+    "max": "1000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "slash",
+    "min": "-100000000000000000000",
+    "neutral": "0",
+    "max": "0",
+    "kind": 0
+   }
+  ],
+  "policy": {
+   "theta": "1000000000000000",
+   "rhoN": 1,
+   "rhoD": 2,
+   "minAnchors": 2,
+   "vetoQuorum": 1,
+   "vetoMax": -1,
+   "maxAge": 288000,
+   "minRefresh": 600,
+   "slackRefresh": "0",
+   "eLowMax": "10000000000000000",
+   "strictTransfer": true,
+   "registryVerified": false,
+   "ownerFallback": false,
+   "submitters": [
+    "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+   ]
+  },
+  "setId": "0xc60421e9612ccc629ed83fca3d43144fd5e1c40c29383942449fe8c6a66c75aa"
+ },
+ "nCert": 5,
+ "nodes": [
+  {
+   "i": 0,
+   "kind": "anchor",
+   "address": "0x1111111111111111111111111111111111111111",
+   "hasRow": true
+  },
+  {
+   "i": 1,
+   "kind": "anchor",
+   "address": "0x2222222222222222222222222222222222222222",
+   "hasRow": true
+  },
+  {
+   "i": 2,
+   "kind": "agent",
+   "agentId": 1,
+   "owner": "0x000000000000000000000000000000000000a001",
+   "agentWallet": "0x000000000000000000000000000000000000a001",
+   "hasRow": true
+  },
+  {
+   "i": 3,
+   "kind": "agent",
+   "agentId": 2,
+   "owner": "0x000000000000000000000000000000000000a002",
+   "agentWallet": "0x000000000000000000000000000000000000a002",
+   "hasRow": true
+  },
+  {
+   "i": 4,
+   "kind": "agent",
+   "agentId": 3,
+   "owner": "0x000000000000000000000000000000000000a003",
+   "agentWallet": "0x000000000000000000000000000000000000a003",
+   "hasRow": false
+  }
+ ],
+ "rows": [
+  {
+   "u": 0,
+   "source": null,
+   "via": "anchor",
+   "aliasOf": null,
+   "sPlus": 15000,
+   "bPlus": 15000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x1111111111111111111111111111111111111111",
+     "agentId": 1,
+     "tag1": "vouch"
+    },
+    {
+     "dst": 3,
+     "w": 5000,
+     "feedbackIndex": 1,
+     "client": "0x1111111111111111111111111111111111111111",
+     "agentId": 2,
+     "tag1": "vouch"
+    }
+   ]
+  },
+  {
+   "u": 1,
+   "source": null,
+   "via": "anchor",
+   "aliasOf": null,
+   "sPlus": 0,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": []
+  },
+  {
+   "u": 2,
+   "source": "0x000000000000000000000000000000000000a001",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 3333,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 3,
+     "w": 3333,
+     "feedbackIndex": 2,
+     "client": "0x000000000000000000000000000000000000a001",
+     "agentId": 2,
+     "tag1": "vouch"
+    },
+    {
+     "dst": 4,
+     "w": -10000,
+     "feedbackIndex": 1,
+     "client": "0x000000000000000000000000000000000000a001",
+     "agentId": 3,
+     "tag1": "slash"
+    }
+   ]
+  },
+  {
+   "u": 3,
+   "source": "0x000000000000000000000000000000000000a002",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10277,
+   "bPlus": 10277,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 7777,
+     "feedbackIndex": 1,
+     "client": "0x000000000000000000000000000000000000a002",
+     "agentId": 1,
+     "tag1": "vouch"
+    },
+    {
+     "dst": 4,
+     "w": 2500,
+     "feedbackIndex": 4,
+     "client": "0x000000000000000000000000000000000000a002",
+     "agentId": 3,
+     "tag1": "vouch"
+    }
+   ]
+  }
+ ],
+ "vectors": {
+  "t": [
+   [
+    "333333333333333333",
+    "0",
+    "208939702171553543",
+    "120500475896593271",
+    "19542096574323452"
+   ],
+   [
+    "0",
+    "333333333333333333",
+    "0",
+    "0",
+    "0"
+   ]
+  ],
+  "ownerFp": [
+   "0",
+   "0",
+   "40961",
+   "40962",
+   "40963"
+  ]
+ },
+ "expected": {
+  "residualMode": "contract",
+  "subSolution": true,
+  "iterationsFromZero": 41,
+  "r": [
+   "13028064382882308",
+   "6"
+  ],
+  "e": [
+   "39084193148646924",
+   "18"
+  ],
+  "eEff": "19542096574323471",
+  "qEff": "19542096574323453",
+  "mass": "507824470654568465",
+  "distrustMass": "69646567390517848",
+  "d": [
+   "0",
+   "0",
+   "0",
+   "0",
+   "69646567390517848"
+  ],
+  "graphRoot": "0x99ba6035e4b7fd23f810c9bfaebe5918114c57d639e1450d683e0dd2608e57ef",
+  "vectorRoot": "0x44d6010f80ba04ed7393de73dd30a5784186e87d90f363b7aaccb019901282bc",
+  "tight": {
+   "r": [
+    "13028064382882306",
+    "1"
+   ],
+   "e": [
+    "39084193148646918",
+    "3"
+   ]
+  }
+ },
+ "calldata": {
+  "W": 2,
+  "newNodes": "0x010000000101000000020100000003",
+  "vectors": "0x04a03ce68d21555500000000000000000000000000000000000000000000000004a03ce68d215555000000000000000002e64d8d57694f070000000000000000000000000000a00101ac1a8b5d14fb770000000000000000000000000000a00200456d6eec7a9afc0000000000000000000000000000a003",
+  "rows": "0x020000000400000002000227100000000100031388000000010001000000028002000000000000000000000000000000000000a00100030d05000000020004d8f00000000100038002000000000000000000000000000000000000a00200021e6100000001000409c400000004"
+ }
+}

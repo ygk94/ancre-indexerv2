@@ -1,0 +1,90 @@
+{
+ "source": "solver/graph.py build_graph via indexer/analytics/survival_scan.py (HyperSync, events only), past_owners empty (D20)",
+ "chainId": 10,
+ "block": 157470289,
+ "measuredAt": "2026-10-05T17:30:20Z",
+ "schema": "solver/schema_reference.json filter reference",
+ "counts": {
+  "agentsMinted": 545,
+  "transfers": 33,
+  "sharedWallets": 14,
+  "agentsOnSharedWallets": 300,
+  "feedbacks": 334,
+  "revoked": 0,
+  "couples": 96,
+  "absValueGe1e38": 0
+ },
+ "selfRatingsByController": {},
+ "edges": [
+  {
+   "client": "0x03686566d574a5ccf464871100160b3507810987",
+   "agent": "1",
+   "w": 10000,
+   "tag1": "starred",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "522",
+   "w": 8800,
+   "tag1": "agent_rating:data_collection",
+   "feedbackIndex": "2"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "524",
+   "w": 9000,
+   "tag1": "agent_rating:data_collection",
+   "feedbackIndex": "68"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "528",
+   "w": 4000,
+   "tag1": "worker_rating:data_collection",
+   "feedbackIndex": "23"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "530",
+   "w": 4000,
+   "tag1": "worker_rating:data_collection",
+   "feedbackIndex": "19"
+  },
+  {
+   "client": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+   "agent": "532",
+   "w": 9000,
+   "tag1": "agent_rating:data_collection",
+   "feedbackIndex": "48"
+  },
+  {
+   "client": "0x19b44057c8de1fd17d396ca034bd12562125cb60",
+   "agent": "1",
+   "w": 10000,
+   "tag1": "starred",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x268718e73061bd1f91ecab459900ee29c34d8f57",
+   "agent": "1",
+   "w": 10000,
+   "tag1": "starred",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0x927fe5e080b86dd98004ce72831b037d3196a6f7",
+   "agent": "1",
+   "w": 10000,
+   "tag1": "starred",
+   "feedbackIndex": "1"
+  },
+  {
+   "client": "0xf0ae5a935897f96591bd5881897bf2860777b79b",
+   "agent": "1",
+   "w": 10000,
+   "tag1": "starred",
+   "feedbackIndex": "1"
+  }
+ ]
+}

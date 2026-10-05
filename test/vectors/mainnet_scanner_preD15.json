@@ -1,0 +1,1390 @@
+{
+ "format": "ancre-cert-v1",
+ "label": "mainnet_scanner_preD15",
+ "notes": "Acte 1 (b) SANS D15 (schéma modifié : tout propage) : fuite du scanner vers la ferme. Grand certificat.",
+ "alignedWith": "contracts/ENCODING.md unified v1 (2026-10-01), AnchoredReputation v1 (integration 02+04)",
+ "identityBlock": 108835675,
+ "set": {
+  "anchors": [
+   "0x0730536018541c5149a049d35528a76c2c8f1e6b",
+   "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4"
+  ],
+  "lambdas": [
+   "500000000000000000",
+   "500000000000000000"
+  ],
+  "alphaN": 1,
+  "alphaD": 3,
+  "minAnchors": 2,
+  "tagSchemaHash": "0x759181e3d4934dcf989fcb2f226d6609a4c8c4d2338433f56e9947f3054871d3",
+  "tags": [
+   {
+    "tag": "vouch",
+    "min": "0",
+    "neutral": "0",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "review",
+    "min": "-1000000000000000000",
+    "neutral": "0",
+    "max": "1000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "eve",
+    "min": "0",
+    "neutral": "0",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "trust",
+    "min": "0",
+    "neutral": "0",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "plague",
+    "min": "0",
+    "neutral": "0",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "liveness",
+    "min": "0",
+    "neutral": "0",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "slash",
+    "min": "-100000000000000000000",
+    "neutral": "0",
+    "max": "0",
+    "kind": 0
+   }
+  ],
+  "policy": {
+   "theta": "1000000000000000",
+   "rhoN": 1,
+   "rhoD": 2,
+   "minAnchors": 2,
+   "vetoQuorum": 1,
+   "vetoMax": -1,
+   "maxAge": 288000,
+   "minRefresh": 600,
+   "slackRefresh": "0",
+   "eLowMax": "10000000000000000",
+   "strictTransfer": true,
+   "registryVerified": true,
+   "ownerFallback": false,
+   "submitters": []
+  },
+  "setId": "0x822b0e058f03a4f263cea2a47430a14ae9e0487e07e0c8fb8bdc3d679931b322"
+ },
+ "nCert": 35,
+ "nodes": [
+  {
+   "i": 0,
+   "kind": "anchor",
+   "address": "0x0730536018541c5149a049d35528a76c2c8f1e6b",
+   "hasRow": true
+  },
+  {
+   "i": 1,
+   "kind": "anchor",
+   "address": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+   "hasRow": true
+  },
+  {
+   "i": 2,
+   "kind": "agent",
+   "agentId": 2,
+   "owner": "0x8df64bacf6b70f7787f8d14429b258b3ff958ec1",
+   "agentWallet": "0x8df64bacf6b70f7787f8d14429b258b3ff958ec1",
+   "hasRow": true
+  },
+  {
+   "i": 3,
+   "kind": "agent",
+   "agentId": 3,
+   "owner": "0xe4cdd1ad7fae7d54441ef12db1a68ab9a4c2d7b5",
+   "agentWallet": "0xe4cdd1ad7fae7d54441ef12db1a68ab9a4c2d7b5",
+   "hasRow": true
+  },
+  {
+   "i": 4,
+   "kind": "agent",
+   "agentId": 4,
+   "owner": "0x734b0e337bfa7d4764f4b806b4245dd312ddf134",
+   "agentWallet": "0x734b0e337bfa7d4764f4b806b4245dd312ddf134",
+   "hasRow": false
+  },
+  {
+   "i": 5,
+   "kind": "agent",
+   "agentId": 18,
+   "owner": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "agentWallet": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "hasRow": true
+  },
+  {
+   "i": 6,
+   "kind": "agent",
+   "agentId": 182,
+   "owner": "0x97cd97cfe21799bacbf39d0a53469e5f82f30996",
+   "agentWallet": "0x97cd97cfe21799bacbf39d0a53469e5f82f30996",
+   "hasRow": true
+  },
+  {
+   "i": 7,
+   "kind": "agent",
+   "agentId": 1829,
+   "owner": "0xb420dd543a9a68138be740ac2ec3f44b43cc9fc1",
+   "agentWallet": "0xb420dd543a9a68138be740ac2ec3f44b43cc9fc1",
+   "hasRow": true
+  },
+  {
+   "i": 8,
+   "kind": "agent",
+   "agentId": 2422,
+   "owner": "0xb73788bf5afc8c3ce75d89645d65d33e37db9800",
+   "agentWallet": "0xb73788bf5afc8c3ce75d89645d65d33e37db9800",
+   "hasRow": true
+  },
+  {
+   "i": 9,
+   "kind": "agent",
+   "agentId": 3156,
+   "owner": "0x7c26cfb8ffc3afc2e58175b33955252afadbcc95",
+   "agentWallet": "0x7c26cfb8ffc3afc2e58175b33955252afadbcc95",
+   "hasRow": true
+  },
+  {
+   "i": 10,
+   "kind": "agent",
+   "agentId": 4078,
+   "owner": "0xd84382f1fa353222d040e67ff429ad81cceb5a1a",
+   "agentWallet": "0xd84382f1fa353222d040e67ff429ad81cceb5a1a",
+   "hasRow": true
+  },
+  {
+   "i": 11,
+   "kind": "agent",
+   "agentId": 4442,
+   "owner": "0xb6bb848a8e00b77698cab1626c893dc8dde4927c",
+   "agentWallet": "0xb6bb848a8e00b77698cab1626c893dc8dde4927c",
+   "hasRow": true
+  },
+  {
+   "i": 12,
+   "kind": "agent",
+   "agentId": 4557,
+   "owner": "0xe4040b00ea4b4765de13abcf983f054ae334b982",
+   "agentWallet": "0xe4040b00ea4b4765de13abcf983f054ae334b982",
+   "hasRow": true
+  },
+  {
+   "i": 13,
+   "kind": "agent",
+   "agentId": 4993,
+   "owner": "0x05e6b8c70092c154a2c9f1434579893e0a7dac7b",
+   "agentWallet": "0x05e6b8c70092c154a2c9f1434579893e0a7dac7b",
+   "hasRow": true
+  },
+  {
+   "i": 14,
+   "kind": "agent",
+   "agentId": 5117,
+   "owner": "0x857f4d0bf5bc7ff549a7af95dfcb9f7539d75dcb",
+   "agentWallet": "0x857f4d0bf5bc7ff549a7af95dfcb9f7539d75dcb",
+   "hasRow": true
+  },
+  {
+   "i": 15,
+   "kind": "agent",
+   "agentId": 5169,
+   "owner": "0x42e6e6b51ffb3b2f6f900e1a99b7e71d92fee8b2",
+   "agentWallet": "0x42e6e6b51ffb3b2f6f900e1a99b7e71d92fee8b2",
+   "hasRow": true
+  },
+  {
+   "i": 16,
+   "kind": "agent",
+   "agentId": 5205,
+   "owner": "0x335a0db1e94d1d3a765e33356256abafc5058dc8",
+   "agentWallet": "0x335a0db1e94d1d3a765e33356256abafc5058dc8",
+   "hasRow": true
+  },
+  {
+   "i": 17,
+   "kind": "agent",
+   "agentId": 5240,
+   "owner": "0x5b49438db4689adfab2967d1dd15576cae91ebbe",
+   "agentWallet": "0x5b49438db4689adfab2967d1dd15576cae91ebbe",
+   "hasRow": true
+  },
+  {
+   "i": 18,
+   "kind": "agent",
+   "agentId": 5329,
+   "owner": "0xf190aac02080c72d94a89eeaa117aa5169016166",
+   "agentWallet": "0xf190aac02080c72d94a89eeaa117aa5169016166",
+   "hasRow": true
+  },
+  {
+   "i": 19,
+   "kind": "agent",
+   "agentId": 5710,
+   "owner": "0x943b8e7a92dd1a4bc4ee96ea6337a6f208412d00",
+   "agentWallet": "0x943b8e7a92dd1a4bc4ee96ea6337a6f208412d00",
+   "hasRow": true
+  },
+  {
+   "i": 20,
+   "kind": "agent",
+   "agentId": 5720,
+   "owner": "0x3b3639a93757a37c70a4320806bdabdd0622ad8d",
+   "agentWallet": "0x3b3639a93757a37c70a4320806bdabdd0622ad8d",
+   "hasRow": true
+  },
+  {
+   "i": 21,
+   "kind": "agent",
+   "agentId": 5779,
+   "owner": "0x481d84086a5aa4971b284d916c0e78d8888a881e",
+   "agentWallet": "0x481d84086a5aa4971b284d916c0e78d8888a881e",
+   "hasRow": true
+  },
+  {
+   "i": 22,
+   "kind": "agent",
+   "agentId": 5957,
+   "owner": "0xf755796c4558a7aa8b0a444e4b31e1a6aaf05128",
+   "agentWallet": "0xf755796c4558a7aa8b0a444e4b31e1a6aaf05128",
+   "hasRow": true
+  },
+  {
+   "i": 23,
+   "kind": "agent",
+   "agentId": 6149,
+   "owner": "0x59de0ec4e62fc31e36fc5682e2c3afdf99d31a4d",
+   "agentWallet": "0x59de0ec4e62fc31e36fc5682e2c3afdf99d31a4d",
+   "hasRow": true
+  },
+  {
+   "i": 24,
+   "kind": "agent",
+   "agentId": 6238,
+   "owner": "0xd85978134ec38ae5899748f76624614bd9644524",
+   "agentWallet": "0xd85978134ec38ae5899748f76624614bd9644524",
+   "hasRow": true
+  },
+  {
+   "i": 25,
+   "kind": "agent",
+   "agentId": 6618,
+   "owner": "0x222f2b06c530a9a1404bb7adbb117ffaa633c3a0",
+   "agentWallet": "0x222f2b06c530a9a1404bb7adbb117ffaa633c3a0",
+   "hasRow": true
+  },
+  {
+   "i": 26,
+   "kind": "agent",
+   "agentId": 6906,
+   "owner": "0xa9936226bcec34914988d9cd0f3d6780b569b630",
+   "agentWallet": "0xa9936226bcec34914988d9cd0f3d6780b569b630",
+   "hasRow": true
+  },
+  {
+   "i": 27,
+   "kind": "agent",
+   "agentId": 7222,
+   "owner": "0x73cc5c553985fd3eadbafc140e9d5554274a108a",
+   "agentWallet": "0x73cc5c553985fd3eadbafc140e9d5554274a108a",
+   "hasRow": true
+  },
+  {
+   "i": 28,
+   "kind": "agent",
+   "agentId": 7362,
+   "owner": "0xb9e9bbd21f62153ea7e4f83d67ff81938f9309c6",
+   "agentWallet": "0xb9e9bbd21f62153ea7e4f83d67ff81938f9309c6",
+   "hasRow": true
+  },
+  {
+   "i": 29,
+   "kind": "agent",
+   "agentId": 7537,
+   "owner": "0x72f9cd551d3d34b2f0fc734df394ee0a639f5b57",
+   "agentWallet": "0x72f9cd551d3d34b2f0fc734df394ee0a639f5b57",
+   "hasRow": true
+  },
+  {
+   "i": 30,
+   "kind": "agent",
+   "agentId": 7657,
+   "owner": "0x27b7cd80d61dbf3fa34f7c6e55d8f0b53c8c3aef",
+   "agentWallet": "0x27b7cd80d61dbf3fa34f7c6e55d8f0b53c8c3aef",
+   "hasRow": true
+  },
+  {
+   "i": 31,
+   "kind": "agent",
+   "agentId": 8095,
+   "owner": "0x449d490f6a76cafcfff1babeff839d4a5dee139c",
+   "agentWallet": "0x449d490f6a76cafcfff1babeff839d4a5dee139c",
+   "hasRow": true
+  },
+  {
+   "i": 32,
+   "kind": "agent",
+   "agentId": 8216,
+   "owner": "0x091825387d8f0f1966eed2ad6c8efb7ab876ad62",
+   "agentWallet": "0x091825387d8f0f1966eed2ad6c8efb7ab876ad62",
+   "hasRow": true
+  },
+  {
+   "i": 33,
+   "kind": "agent",
+   "agentId": 8220,
+   "owner": "0xcf0d7186f3db8b185ae928106c47832a44ce3176",
+   "agentWallet": "0xcf0d7186f3db8b185ae928106c47832a44ce3176",
+   "hasRow": true
+  },
+  {
+   "i": 34,
+   "kind": "agent",
+   "agentId": 8357,
+   "owner": "0x52ce108ae72712929fd2b8c6177a9b39e0ccf644",
+   "agentWallet": "0x52ce108ae72712929fd2b8c6177a9b39e0ccf644",
+   "hasRow": true
+  }
+ ],
+ "rows": [
+  {
+   "u": 0,
+   "source": null,
+   "via": "anchor",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 5,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x0730536018541c5149a049d35528a76c2c8f1e6b",
+     "agentId": 18,
+     "tag1": "vouch"
+    }
+   ]
+  },
+  {
+   "u": 1,
+   "source": null,
+   "via": "anchor",
+   "aliasOf": null,
+   "sPlus": 217000,
+   "bPlus": 217000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 7,
+     "w": 1000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 1829,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 8,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 2422,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 9,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 3156,
+     "tag1": "trust"
+    },
+    {
+     "dst": 10,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 4078,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 11,
+     "w": 6000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 4442,
+     "tag1": "trust"
+    },
+    {
+     "dst": 12,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 4557,
+     "tag1": "trust"
+    },
+    {
+     "dst": 13,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 4993,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 14,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5117,
+     "tag1": "trust"
+    },
+    {
+     "dst": 15,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5169,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 16,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5205,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 17,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5240,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 18,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5329,
+     "tag1": "liveness"
+    },
+    {
+     "dst": 19,
+     "w": 3000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5710,
+     "tag1": "trust"
+    },
+    {
+     "dst": 20,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5720,
+     "tag1": "trust"
+    },
+    {
+     "dst": 21,
+     "w": 3000,
+     "feedbackIndex": 2,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5779,
+     "tag1": "trust"
+    },
+    {
+     "dst": 22,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 5957,
+     "tag1": "trust"
+    },
+    {
+     "dst": 23,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 6149,
+     "tag1": "trust"
+    },
+    {
+     "dst": 24,
+     "w": 6000,
+     "feedbackIndex": 3,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 6238,
+     "tag1": "trust"
+    },
+    {
+     "dst": 25,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 6618,
+     "tag1": "trust"
+    },
+    {
+     "dst": 26,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 6906,
+     "tag1": "trust"
+    },
+    {
+     "dst": 27,
+     "w": 8500,
+     "feedbackIndex": 2,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 7222,
+     "tag1": "trust"
+    },
+    {
+     "dst": 28,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 7362,
+     "tag1": "trust"
+    },
+    {
+     "dst": 29,
+     "w": 6000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 7537,
+     "tag1": "trust"
+    },
+    {
+     "dst": 30,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 7657,
+     "tag1": "trust"
+    },
+    {
+     "dst": 31,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 8095,
+     "tag1": "trust"
+    },
+    {
+     "dst": 32,
+     "w": 3000,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 8216,
+     "tag1": "trust"
+    },
+    {
+     "dst": 33,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 8220,
+     "tag1": "trust"
+    },
+    {
+     "dst": 34,
+     "w": 8500,
+     "feedbackIndex": 1,
+     "client": "0xa06f907f7ea437ebe60e3d452831ec69e5be43a4",
+     "agentId": 8357,
+     "tag1": "trust"
+    }
+   ]
+  },
+  {
+   "u": 2,
+   "source": "0x8df64bacf6b70f7787f8d14429b258b3ff958ec1",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 0,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": []
+  },
+  {
+   "u": 3,
+   "source": "0xe4cdd1ad7fae7d54441ef12db1a68ab9a4c2d7b5",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 0,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": []
+  },
+  {
+   "u": 5,
+   "source": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 20000,
+   "bPlus": 20000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 2,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+     "agentId": 2,
+     "tag1": "vouch"
+    },
+    {
+     "dst": 3,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+     "agentId": 3,
+     "tag1": "review"
+    },
+    {
+     "dst": 4,
+     "w": -10000,
+     "feedbackIndex": 1,
+     "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+     "agentId": 4,
+     "tag1": "slash"
+    }
+   ]
+  },
+  {
+   "u": 6,
+   "source": "0x97cd97cfe21799bacbf39d0a53469e5f82f30996",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 0,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": []
+  },
+  {
+   "u": 7,
+   "source": "0xb420dd543a9a68138be740ac2ec3f44b43cc9fc1",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xb420dd543a9a68138be740ac2ec3f44b43cc9fc1",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 8,
+   "source": "0xb73788bf5afc8c3ce75d89645d65d33e37db9800",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xb73788bf5afc8c3ce75d89645d65d33e37db9800",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 9,
+   "source": "0x7c26cfb8ffc3afc2e58175b33955252afadbcc95",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x7c26cfb8ffc3afc2e58175b33955252afadbcc95",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 10,
+   "source": "0xd84382f1fa353222d040e67ff429ad81cceb5a1a",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xd84382f1fa353222d040e67ff429ad81cceb5a1a",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 11,
+   "source": "0xb6bb848a8e00b77698cab1626c893dc8dde4927c",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 0,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": []
+  },
+  {
+   "u": 12,
+   "source": "0xe4040b00ea4b4765de13abcf983f054ae334b982",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xe4040b00ea4b4765de13abcf983f054ae334b982",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 13,
+   "source": "0x05e6b8c70092c154a2c9f1434579893e0a7dac7b",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x05e6b8c70092c154a2c9f1434579893e0a7dac7b",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 14,
+   "source": "0x857f4d0bf5bc7ff549a7af95dfcb9f7539d75dcb",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x857f4d0bf5bc7ff549a7af95dfcb9f7539d75dcb",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 15,
+   "source": "0x42e6e6b51ffb3b2f6f900e1a99b7e71d92fee8b2",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x42e6e6b51ffb3b2f6f900e1a99b7e71d92fee8b2",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 16,
+   "source": "0x335a0db1e94d1d3a765e33356256abafc5058dc8",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x335a0db1e94d1d3a765e33356256abafc5058dc8",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 17,
+   "source": "0x5b49438db4689adfab2967d1dd15576cae91ebbe",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x5b49438db4689adfab2967d1dd15576cae91ebbe",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 18,
+   "source": "0xf190aac02080c72d94a89eeaa117aa5169016166",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xf190aac02080c72d94a89eeaa117aa5169016166",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 19,
+   "source": "0x943b8e7a92dd1a4bc4ee96ea6337a6f208412d00",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x943b8e7a92dd1a4bc4ee96ea6337a6f208412d00",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 20,
+   "source": "0x3b3639a93757a37c70a4320806bdabdd0622ad8d",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x3b3639a93757a37c70a4320806bdabdd0622ad8d",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 21,
+   "source": "0x481d84086a5aa4971b284d916c0e78d8888a881e",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x481d84086a5aa4971b284d916c0e78d8888a881e",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 22,
+   "source": "0xf755796c4558a7aa8b0a444e4b31e1a6aaf05128",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xf755796c4558a7aa8b0a444e4b31e1a6aaf05128",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 23,
+   "source": "0x59de0ec4e62fc31e36fc5682e2c3afdf99d31a4d",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x59de0ec4e62fc31e36fc5682e2c3afdf99d31a4d",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 24,
+   "source": "0xd85978134ec38ae5899748f76624614bd9644524",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xd85978134ec38ae5899748f76624614bd9644524",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 25,
+   "source": "0x222f2b06c530a9a1404bb7adbb117ffaa633c3a0",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x222f2b06c530a9a1404bb7adbb117ffaa633c3a0",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 26,
+   "source": "0xa9936226bcec34914988d9cd0f3d6780b569b630",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xa9936226bcec34914988d9cd0f3d6780b569b630",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 27,
+   "source": "0x73cc5c553985fd3eadbafc140e9d5554274a108a",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x73cc5c553985fd3eadbafc140e9d5554274a108a",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 28,
+   "source": "0xb9e9bbd21f62153ea7e4f83d67ff81938f9309c6",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xb9e9bbd21f62153ea7e4f83d67ff81938f9309c6",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 29,
+   "source": "0x72f9cd551d3d34b2f0fc734df394ee0a639f5b57",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x72f9cd551d3d34b2f0fc734df394ee0a639f5b57",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 30,
+   "source": "0x27b7cd80d61dbf3fa34f7c6e55d8f0b53c8c3aef",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x27b7cd80d61dbf3fa34f7c6e55d8f0b53c8c3aef",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 31,
+   "source": "0x449d490f6a76cafcfff1babeff839d4a5dee139c",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x449d490f6a76cafcfff1babeff839d4a5dee139c",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 32,
+   "source": "0x091825387d8f0f1966eed2ad6c8efb7ab876ad62",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0x091825387d8f0f1966eed2ad6c8efb7ab876ad62",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 33,
+   "source": "0xcf0d7186f3db8b185ae928106c47832a44ce3176",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 10000,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": [
+    {
+     "dst": 6,
+     "w": 10000,
+     "feedbackIndex": 1,
+     "client": "0xcf0d7186f3db8b185ae928106c47832a44ce3176",
+     "agentId": 182,
+     "tag1": "eve"
+    }
+   ]
+  },
+  {
+   "u": 34,
+   "source": "0x52ce108ae72712929fd2b8c6177a9b39e0ccf644",
+   "via": "wallet",
+   "aliasOf": null,
+   "sPlus": 0,
+   "bPlus": 10000,
+   "bMinus": 10000,
+   "edges": []
+  }
+ ],
+ "vectors": {
+  "t": [
+   [
+    "333333333333333333",
+    "0",
+    "74074074074074074",
+    "74074074074074074",
+    "0",
+    "222222222222222222",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   [
+    "0",
+    "333333333333333333",
+    "0",
+    "0",
+    "0",
+    "0",
+    "138248847926267255",
+    "1024065540194572",
+    "10240655401945724",
+    "8704557091653865",
+    "10240655401945724",
+    "6144393241167434",
+    "8704557091653865",
+    "10240655401945724",
+    "8704557091653865",
+    "10240655401945724",
+    "10240655401945724",
+    "10240655401945724",
+    "10240655401945724",
+    "3072196620583717",
+    "8704557091653865",
+    "3072196620583717",
+    "8704557091653865",
+    "8704557091653865",
+    "6144393241167434",
+    "8704557091653865",
+    "8704557091653865",
+    "8704557091653865",
+    "8704557091653865",
+    "6144393241167434",
+    "8704557091653865",
+    "8704557091653865",
+    "3072196620583717",
+    "8704557091653865",
+    "8704557091653865"
+   ]
+  ],
+  "ownerFp": [
+   "0",
+   "0",
+   "3004561431519923905",
+   "3577699483930253237",
+   "3757231150269854004",
+   "3806799678197301611",
+   "6000657686573812118",
+   "3369805550300471233",
+   "6730017482353645568",
+   "4131249099709861013",
+   "8370412155445139994",
+   "7820850160831074940",
+   "1747120999640643970",
+   "5006183360356002939",
+   "6902786179705822667",
+   "1853203885892495538",
+   "7086039835127156168",
+   "6707363344335104958",
+   "2384561794346738022",
+   "7149366491924737280",
+   "485733300604939661",
+   "7786293677169215518",
+   "5418359932652114216",
+   "7116725211068832333",
+   "7360114669427901732",
+   "4256323837348791200",
+   "1098147686645347888",
+   "1053091707799343242",
+   "7493850775736748486",
+   "8328543339303361367",
+   "6185958749388946159",
+   "9188360607494968220",
+   "7822466107288497506",
+   "7802349097008902518",
+   "1691835282918012484"
+  ]
+ },
+ "expected": {
+  "residualMode": "contract",
+  "subSolution": true,
+  "iterationsFromZero": 4,
+  "r": [
+   "58",
+   "58"
+  ],
+  "e": [
+   "174",
+   "174"
+  ],
+  "eEff": "174",
+  "qEff": "0",
+  "mass": "698754053592763246",
+  "distrustMass": "74074074074074074",
+  "d": [
+   "0",
+   "0",
+   "0",
+   "0",
+   "74074074074074074",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0"
+  ],
+  "graphRoot": "0x6910d4b6b0b73092bebc72909ca73223c75d32a6aedaf70301bcddf17b65cb32",
+  "vectorRoot": "0x845aa9605a3c71003ae21aaa175fa4ff3ca14dbde6e64de3707e4c79f3e247b2",
+  "tight": {
+   "r": [
+    "1",
+    "55"
+   ],
+   "e": [
+    "3",
+    "165"
+   ]
+  }
+ },
+ "calldata": {
+  "W": 2,
+  "newNodes": "0x010000000201000000030100000004010000001201000000b6010000072501000009760100000c540100000fee010000115a01000011cd010000138101000013fd01000014310100001455010000147801000014d1010000164e0100001658010000169301000017450100001805010000185e01000019da0100001afa0100001c360100001cc20100001d710100001de90100001f9f0100002018010000201c01000020a5",
+  "vectors": "0x04a03ce68d21555500000000000000000000000000000000000000000000000004a03ce68d2155550000000000000000010729fa58404bda000000000000000029b258b3ff958ec1010729fa58404bda000000000000000031a68ab9a4c2d7b50000000000000000000000000000000034245dd312ddf13403157def08c0e38e000000000000000034d478235605816b000000000000000001eb28983f408d7753469e5f82f3099600000000000000000003a361d6c0010c2ec3f44b43cc9fc10000000000000000002461d263800a7c5d65d33e37db98000000000000000000001eecbfa16008e93955252afadbcc950000000000000000002461d263800a7c7429ad81cceb5a1a00000000000000000015d44b0880064a6c893dc8dde4927c0000000000000000001eecbfa16008e9183f054ae334b9820000000000000000002461d263800a7c4579893e0a7dac7b0000000000000000001eecbfa16008e95fcb9f7539d75dcb0000000000000000002461d263800a7c19b7e71d92fee8b20000000000000000002461d263800a7c6256abafc5058dc80000000000000000002461d263800a7c5d15576cae91ebbe0000000000000000002461d263800a7c2117aa51690161660000000000000000000aea25844003256337a6f208412d000000000000000000001eecbfa16008e906bdabdd0622ad8d0000000000000000000aea25844003256c0e78d8888a881e0000000000000000001eecbfa16008e94b31e1a6aaf051280000000000000000001eecbfa16008e962c3afdf99d31a4d00000000000000000015d44b0880064a6624614bd96445240000000000000000001eecbfa16008e93b117ffaa633c3a00000000000000000001eecbfa16008e90f3d6780b569b6300000000000000000001eecbfa16008e90e9d5554274a108a0000000000000000001eecbfa16008e967ff81938f9309c600000000000000000015d44b0880064a7394ee0a639f5b570000000000000000001eecbfa16008e955d8f0b53c8c3aef0000000000000000001eecbfa16008e97f839d4a5dee139c0000000000000000000aea25844003256c8efb7ab876ad620000000000000000001eecbfa16008e96c47832a44ce31760000000000000000001eecbfa16008e9177a9b39e0ccf644",
+  "rows": "0x02000000220000000100052710000000010001001c000703e80000000100082710000000010009213400000001000a271000000001000b177000000001000c213400000001000d271000000001000e213400000001000f27100000000100102710000000010011271000000001001227100000000100130bb800000001001421340000000100150bb8000000020016213400000001001721340000000100181770000000030019213400000001001a213400000001001b213400000002001c213400000001001d177000000001001e213400000001001f21340000000100200bb80000000100212134000000010022213400000001000280008df64bacf6b70f7787f8d14429b258b3ff958ec100038000e4cdd1ad7fae7d54441ef12db1a68ab9a4c2d7b500058003ea0b21fb2441464f4920ce3e34d478235605816b000227100000000100032710000000010004d8f0000000010006800097cd97cfe21799bacbf39d0a53469e5f82f3099600078001b420dd543a9a68138be740ac2ec3f44b43cc9fc1000627100000000100088001b73788bf5afc8c3ce75d89645d65d33e37db98000006271000000001000980017c26cfb8ffc3afc2e58175b33955252afadbcc950006271000000001000a8001d84382f1fa353222d040e67ff429ad81cceb5a1a0006271000000001000b8000b6bb848a8e00b77698cab1626c893dc8dde4927c000c8001e4040b00ea4b4765de13abcf983f054ae334b9820006271000000001000d800105e6b8c70092c154a2c9f1434579893e0a7dac7b0006271000000001000e8001857f4d0bf5bc7ff549a7af95dfcb9f7539d75dcb0006271000000001000f800142e6e6b51ffb3b2f6f900e1a99b7e71d92fee8b2000627100000000100108001335a0db1e94d1d3a765e33356256abafc5058dc80006271000000001001180015b49438db4689adfab2967d1dd15576cae91ebbe000627100000000100128001f190aac02080c72d94a89eeaa117aa5169016166000627100000000100138001943b8e7a92dd1a4bc4ee96ea6337a6f208412d000006271000000001001480013b3639a93757a37c70a4320806bdabdd0622ad8d000627100000000100158001481d84086a5aa4971b284d916c0e78d8888a881e000627100000000100168001f755796c4558a7aa8b0a444e4b31e1a6aaf0512800062710000000010017800159de0ec4e62fc31e36fc5682e2c3afdf99d31a4d000627100000000100188001d85978134ec38ae5899748f76624614bd9644524000627100000000100198001222f2b06c530a9a1404bb7adbb117ffaa633c3a00006271000000001001a8001a9936226bcec34914988d9cd0f3d6780b569b6300006271000000001001b800173cc5c553985fd3eadbafc140e9d5554274a108a0006271000000001001c8001b9e9bbd21f62153ea7e4f83d67ff81938f9309c60006271000000001001d800172f9cd551d3d34b2f0fc734df394ee0a639f5b570006271000000001001e800127b7cd80d61dbf3fa34f7c6e55d8f0b53c8c3aef0006271000000001001f8001449d490f6a76cafcfff1babeff839d4a5dee139c000627100000000100208001091825387d8f0f1966eed2ad6c8efb7ab876ad62000627100000000100218001cf0d7186f3db8b185ae928106c47832a44ce317600062710000000010022800052ce108ae72712929fd2b8c6177a9b39e0ccf644"
+ }
+}
