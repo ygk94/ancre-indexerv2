@@ -1,0 +1,20 @@
+# Keeps the Envio Cloud development deployment alive: the free plan deletes a deployment after 7 days without a
+# query. One read-only GraphQL query a day (well inside the limit), from GitHub's servers. Remove after 2026-11-03.
+name: keepalive
+on:
+  schedule:
+    - cron: "17 6 * * *"   # every day at 06:17 UTC
+  workflow_dispatch: {}
+jobs:
+  query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      ENDPOINT: https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql
+    steps:
+      - name: Query the indexer
+        run: |
+          out=$(curl -sS --fail --retry 3 --retry-delay 20 "$ENDPOINT" -H 'Content-Type: application/json' \
+            -d '{"query":"{ chain_metadata { chain_id latest_processed_block } ChainStats { chainId feedbacks refEdges } }"}')
+          echo "$out"
+          echo "$out" | grep -q '"latest_processed_block"' || { echo "unexpected answer"; exit 1; }
