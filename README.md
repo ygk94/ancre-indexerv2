@@ -25,6 +25,18 @@ layer. It does three things:
 3. **Measures the standard with HyperSync.** A multichain scan shows how few ERC-8004 feedbacks survive the
    rules (see below).
 
+## Live endpoint
+
+**`https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql`** (Envio Cloud, public, read-only; deployed 2026-10-05, 3 chains synced in 1 minute, 55 775 events).
+
+```bash
+curl -s https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql -H 'Content-Type: application/json' \
+  -d '{"query":"{ ChainStats { chainId agents feedbacks refEdges selfRatings outOfRange } }"}'
+```
+
+Verified against the chain the same day: `pnpm check --endpoint <url> --chain C --full` green on the 3 chains, and the
+reference solver's parity tool reports 0 difference.
+
 ## Chains
 
 | Chain | Registries | Start block |
