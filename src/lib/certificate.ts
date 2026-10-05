@@ -87,9 +87,9 @@ export function decodeRows(hex: string, nCert?: number, k?: number): DecodedRows
     if (aliasOf !== undefined) {
       const ref = byU.get(aliasOf);
       if (nE !== 0 || sPlus !== undefined) throw new EncodingError(`row ${r}: alias with edges or SPLUS`);          // BadRows(8)
-      if (!ref || ref.aliasOf !== undefined || aliasOf >= u || (k !== undefined && u < k)) throw new EncodingError(`row ${r}: bad alias ref`); // BadRows(9)
+      if (!ref || ref.aliasOf !== undefined || (k !== undefined && u < k)) throw new EncodingError(`row ${r}: bad alias ref`); // BadRows(9)
       if (!src || ref.src !== src) throw new EncodingError(`row ${r}: alias source differs from ref`);              // BadRows(10)
-      row = { u, src, viaOwner, aliasOf, edges: ref.edges.map((e) => ({ ...e })), sPlusEffective: ref.sPlusEffective,
+      row = { u, src, viaOwner, aliasOf, edges: ref.edges, sPlusEffective: ref.sPlusEffective, // shared, never mutated
         leaf: keccak256(b.subarray(start, o)) };
     } else {
       row = { u, src, viaOwner, sPlus, edges, sPlusEffective: sPlus ?? committedPlus, leaf: keccak256(b.subarray(start, o)) };

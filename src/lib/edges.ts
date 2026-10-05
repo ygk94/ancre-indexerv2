@@ -1,4 +1,4 @@
-// The one normative edge decision (D14, D15, bounds, D16/D20), shared by RefEdge (layer 3) and the certificate
+// The one normative edge decision (D14, D15, bounds, D16/D20), shared by SetEdge (layer 3) and the certificate
 // audit, so that the rule tested in parity with solver/graph.py is the rule the audit applies.
 import { combine, controllerReason, isEdgeTag, REJECT_OF, type EdgeSchema, type TagCandidate } from "./rules.js";
 
@@ -21,7 +21,7 @@ export async function edgeDecision(view: EdgeView, schema: EdgeSchema, client: s
   const [agent, ...cands] = await Promise.all([view.agent(agentId), ...tags.map((t) => view.latest(client, agentId, t))]);
   const c = combine(cands.filter((x): x is TagCandidate => x !== undefined), schema);
   if (!c) return undefined;
-  if (c.kind === "none" && c.reason === "OUT_OF_BOUNDS_ONLY") return { w: 0, rejected: "OUT_OF_BOUNDS" };
+  if (c.kind === "none" && c.reason === "OUT_OF_BOUNDS") return { w: 0, rejected: "OUT_OF_BOUNDS" };
   const why = agent ? controllerReason(client, agent, await view.isOperator(agent.owner, client)) : undefined;
   if (why) return { w: 0, rejected: REJECT_OF[why] };
   if (c.kind === "none") return { w: 0, rejected: "ZERO_WEIGHT" };

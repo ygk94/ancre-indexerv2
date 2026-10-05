@@ -11,7 +11,12 @@
 //                   complete; negatives are never omitted, ENCODING §3.2), whatever the target    -> proveEdge (i)
 //   SOURCE          an agent row commits a source (SRC, VIA_OWNER) that is not src(u) of R7 -> proveWallet (iv)
 //   SOURCE_MISSING  an agent row without SRC while src(u) exists: its client's row is not committed
-//   UNKNOWN_AGENT   a row belongs to an agent node with no agent in the registry: every edge of it is fabricated
+//   UNKNOWN_AGENT   a row belongs to an agent node never minted in the registry: every edge of it is fabricated
+//                   (a burnt agent is known: its source-less empty row is legitimate, ENCODING §7.2)
+//   WRONG_INDEX     same weight as the registry but another feedbackIndex (e.g. a pre-v1 tie rule): Registry-verified
+//                   refuses it at submission (ENCODING §3.4 re-reads (w, feedbackIndex)); not provable by proveEdge
+//   SHAPE           a row breaks the shape rules of ENCODING §3.2 (SRC/VIA_OWNER/ALIAS on an anchor or address row;
+//                   a source-less agent row with edges, SPLUS or ALIAS): refused on chain (EdgeMismatch(row, 256))
 // Format ancre-cert-v1 (contracts/ENCODING.md): B+ = max(10 000, sPlus) with the declared sPlus when present; alias rows
 // carry their ref's edges and are audited like any row. In a Registry-verified set the contract already refuses
 // FABRICATED/INFLATED at submission: the audit matters for dilution and omitted negatives (AM-INT.1).
@@ -27,7 +32,8 @@ export interface RegistryView extends EdgeView {
 }
 
 export type DiscrepancyKind =
-  | "FABRICATED" | "INFLATED" | "OVERSTATED_NEG" | "OMITTED_NEG" | "SOURCE" | "SOURCE_MISSING" | "UNKNOWN_AGENT";
+  | "FABRICATED" | "INFLATED" | "OVERSTATED_NEG" | "OMITTED_NEG" | "WRONG_INDEX" | "SOURCE" | "SOURCE_MISSING" | "UNKNOWN_AGENT"
+  | "SHAPE";
 export type AuditOptions = { ownerFallback: boolean }; // policy.ownerFallback of the set (D44, ENCODING §1)
 export type Discrepancy = {
   kind: DiscrepancyKind; u: number; dst?: number; client?: string; agentId?: string;
@@ -63,6 +69,9 @@ export async function auditRows(view: RegistryView, schema: EdgeSchema, nodes: N
   let edgesChecked = 0;
   const certified = new Map<string, number>();
   nodes.slice(0, nCert).forEach((n, i) => { if (n.kind === "agent") certified.set(n.agentId!.toString(), i); });
+  // one true row per client: D20 copies, v1 aliases and an anchor row + its agent copy (R8) share a client
+  const truthOf = new Map<string, Promise<TrueRow>>();
+  const trueRow = (c: string) => truthOf.get(c) ?? truthOf.set(c, registryRow(view, schema, c)).get(c)!;
 
   for (const row of rows) {
     const node = nodes[row.u];
@@ -71,12 +80,15 @@ export async function auditRows(view: RegistryView, schema: EdgeSchema, nodes: N
     if (node.kind === "agent") {
       const agentId = node.agentId!.toString();
       const a = await view.agent(agentId);
-      if (!a || a.owner === ZERO) {
+      if (!a) {
         out.push({ kind: "UNKNOWN_AGENT", u: row.u, agentId, wCommitted: 0, wRegistry: 0 });
       } else {
         // R7: the wallet always wins; the owner only on an ownerFallback set (D44); otherwise no source
         const viaOwner = a.wallet === ZERO && opts.ownerFallback;
-        client = a.wallet !== ZERO ? a.wallet : viaOwner ? a.owner : undefined;
+        client = a.wallet !== ZERO ? a.wallet : viaOwner && a.owner !== ZERO ? a.owner : undefined;
+        if (row.src === undefined && (row.edges.length > 0 || row.sPlus !== undefined || row.aliasOf !== undefined)) {
+          out.push({ kind: "SHAPE", u: row.u, agentId, wCommitted: 0, wRegistry: 0 }); // a source-less agent row MUST be empty
+        }
         if (row.src === undefined) {
           if (client) out.push({ kind: "SOURCE_MISSING", u: row.u, client, agentId, wCommitted: 0, wRegistry: 0 });
         } else if (row.src !== client || row.viaOwner !== viaOwner) {
@@ -85,9 +97,12 @@ export async function auditRows(view: RegistryView, schema: EdgeSchema, nodes: N
       }
     } else {
       client = node.address;
+      if (row.src !== undefined || row.viaOwner || row.aliasOf !== undefined) {
+        out.push({ kind: "SHAPE", u: row.u, client, wCommitted: 0, wRegistry: 0 }); // anchor/address rows carry no source
+      }
     }
     // Audit the edges against the TRUE client (a wrong committed wallet must not hide omissions).
-    const truth: TrueRow = client ? await registryRow(view, schema, client) : { w: new Map(), fi: new Map(), bPlus: G, bMinus: G };
+    const truth: TrueRow = client ? await trueRow(client) : { w: new Map(), fi: new Map(), bPlus: G, bMinus: G };
     const bPlusC = Math.max(G, row.sPlusEffective); // declared true sum when present (D32), else committed Σw+
     const bMinusC = Math.max(G, row.edges.reduce((s, e) => s + (e.w < 0 ? -e.w : 0), 0));
     for (const e of row.edges) {
@@ -102,6 +117,8 @@ export async function auditRows(view: RegistryView, schema: EdgeSchema, nodes: N
       const [bc, bt] = e.w > 0 ? [bPlusC, truth.bPlus] : [bMinusC, truth.bMinus];
       const lhs = BigInt(Math.abs(e.w)) * BigInt(bt);
       const rhs = BigInt(Math.abs(wr)) * BigInt(bc);
+      const fiReg = truth.fi.get(agentId!);
+      if (e.w === wr && fiReg !== undefined && BigInt(e.feedbackIndex) !== fiReg) out.push({ kind: "WRONG_INDEX", ...base });
       if (lhs === rhs) continue;
       const withB = { ...base, bCommitted: bc, bRegistry: bt };
       if (e.w > 0) { if (lhs > rhs) out.push({ kind: "INFLATED", ...withB }); }

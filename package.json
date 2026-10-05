@@ -20,7 +20,7 @@
     "viem": "2.54.0"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.6.0"
   },
   "description": "ERC-8004 trust-graph compiler and ANCRE certificate auditor (Envio HyperIndex, multichain)",
   "license": "MIT"

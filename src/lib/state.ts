@@ -65,10 +65,11 @@ export const REF_SET = "ref";
 /** R2-R6 for one (client, agent) pair of the reference set, written to SetEdge. */
 export async function recomputeRefEdge(context: Ctx, client: string, agentId: string, block: number) {
   const edgeId = `${REF_SET}-${client}-${agentId}`;
-  const [agent, prev, d] = await Promise.all([
+  const [agent, prev, d, refSet] = await Promise.all([
     getAgent(context, agentId),
     context.SetEdge.get(edgeId),
     edgeDecision(storeView(context as never), REF, client, agentId),
+    context.AnchorSet.get(REF_SET),
   ]);
   if (!d && !prev) return;
   const base = { id: edgeId, set_id: REF_SET, client, agent_id: agentId, updatedAtBlock: BigInt(block) };
@@ -79,7 +80,7 @@ export async function recomputeRefEdge(context: Ctx, client: string, agentId: st
       prev.feedbackIndex === next.feedbackIndex) return;
   if (!prev) {
     context.Agent.set({ ...agent, refEdgeRows: agent.refEdgeRows + 1 }); // lets recomputeEdgesInto skip edge-less agents
-    if (!(await context.AnchorSet.get(REF_SET))) context.AnchorSet.set({ id: REF_SET, kind: "reference" });
+    if (!refSet) context.AnchorSet.set({ id: REF_SET, kind: "reference" });
   }
   context.SetEdge.set(next);
   const was = prev && prev.w !== 0 ? 1 : 0;

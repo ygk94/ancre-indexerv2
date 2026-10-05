@@ -74,12 +74,12 @@ export type TagCandidate = { tag1: string; value: bigint; decimals: number; feed
 
 export type Combined =
   | { kind: "edge"; w: number; tag1: string; feedbackIndex: bigint }
-  | { kind: "none"; reason: "OUT_OF_BOUNDS_ONLY" | "ZERO_WEIGHT" };
+  | { kind: "none"; reason: "OUT_OF_BOUNDS" | "ZERO_WEIGHT" };
 
 /**
  * D14 combination for one (client, agent) pair.
  * `latest` holds, for each tag of the set's filter, the latest non-revoked feedback of the triple (any bounds).
- * Returns undefined when no tag of the filter has a feedback (no RefEdge row needed).
+ * Returns undefined when no tag of the filter has a feedback (no SetEdge row needed).
  */
 export function combine(latest: TagCandidate[], schema: EdgeSchema = REF): Combined | undefined {
   const scored: { q: number; c: TagCandidate }[] = [];
@@ -91,7 +91,7 @@ export function combine(latest: TagCandidate[], schema: EdgeSchema = REF): Combi
     if (q !== undefined) scored.push({ q, c });
   }
   if (!any) return undefined;
-  if (scored.length === 0) return { kind: "none", reason: "OUT_OF_BOUNDS_ONLY" };
+  if (scored.length === 0) return { kind: "none", reason: "OUT_OF_BOUNDS" };
   const neg = scored.filter((x) => x.q < 0);
   // R5 (format v1, F-6): ties between tags of equal weight go to the HIGHEST feedbackIndex (the contract stores only
   // tag hashes and keeps the first feedback met scanning from the last index down). Ties never change w.
