@@ -1,13 +1,13 @@
 {
  "format": "ancre-cert-v1",
  "label": "violation_fabricated",
- "notes": "D37 normative violation vector (mainnet_slash_anchor). committed edge with no registry feedback: readFeedback(4, 0x0730, 7) does not exist",
+ "notes": "D37 normative violation vector (mainnet_slash_anchor, anchors 0x0730 / 0x794c, D48-A). committed edge with no registry feedback: readFeedback(4, 0x0730, 7) does not exist",
  "alignedWith": "contracts/ENCODING.md unified v1 (2026-10-01), AnchoredReputation v1 (integration 02+04)",
- "identityBlock": 108835675,
+ "identityBlock": 110994810,
  "set": {
   "anchors": [
    "0x0730536018541c5149a049d35528a76c2c8f1e6b",
-   "0xea0b21fb2441464f4920ce3e34d478235605816b"
+   "0x794c94f1b5e455c1dba27bb28c6085db0fe544f9"
   ],
   "lambdas": [
    "500000000000000000",
@@ -26,6 +26,13 @@
     "kind": 0
    },
    {
+    "tag": "worker_rating:data_collection",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
     "tag": "review",
     "min": "-1000000000000000000",
     "neutral": "0",
@@ -33,10 +40,38 @@
     "kind": 0
    },
    {
+    "tag": "agent_rating:data_collection",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "starred",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
     "tag": "slash",
     "min": "-100000000000000000000",
     "neutral": "0",
     "max": "0",
+    "kind": 0
+   },
+   {
+    "tag": "escrow-rating",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
+    "kind": 0
+   },
+   {
+    "tag": "quality",
+    "min": "0",
+    "neutral": "50000000000000000000",
+    "max": "100000000000000000000",
     "kind": 0
    }
   ],
@@ -56,7 +91,7 @@
    "ownerFallback": false,
    "submitters": []
   },
-  "setId": "0xd280dd5b2ed3bd35266c114df6c96171c8cdb02d1d3d9da4b96ed974aa60c67e"
+  "setId": "0x38c8c6ddcefdad4b58bf6f3caa627e61c0b498e1a9e50c85cbd90ba42f7fc72d"
  },
  "nCert": 6,
  "nodes": [
@@ -69,7 +104,7 @@
   {
    "i": 1,
    "kind": "anchor",
-   "address": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+   "address": "0x794c94f1b5e455c1dba27bb28c6085db0fe544f9",
    "hasRow": true
   },
   {
@@ -138,33 +173,17 @@
    "source": null,
    "via": "anchor",
    "aliasOf": null,
-   "sPlus": 20000,
-   "bPlus": 20000,
+   "sPlus": 10000,
+   "bPlus": 10000,
    "bMinus": 10000,
    "edges": [
     {
-     "dst": 2,
-     "w": 10000,
-     "feedbackIndex": 1,
-     "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
-     "agentId": 2,
-     "tag1": "vouch"
-    },
-    {
-     "dst": 3,
-     "w": 10000,
-     "feedbackIndex": 1,
-     "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
-     "agentId": 3,
-     "tag1": "review"
-    },
-    {
      "dst": 4,
-     "w": -10000,
+     "w": 10000,
      "feedbackIndex": 1,
-     "client": "0xea0b21fb2441464f4920ce3e34d478235605816b",
+     "client": "0x794c94f1b5e455c1dba27bb28c6085db0fe544f9",
      "agentId": 4,
-     "tag1": "slash"
+     "tag1": "quality"
     }
    ]
   },
@@ -247,9 +266,9 @@
    [
     "0",
     "333333333333333333",
-    "111111111111111111",
-    "111111111111111111",
     "0",
+    "0",
+    "222222222222222222",
     "0"
    ]
   ],
@@ -267,27 +286,27 @@
   "subSolution": true,
   "iterationsFromZero": 4,
   "r": [
-   "7",
-   "7"
+   "6",
+   "6"
   ],
   "e": [
-   "21",
-   "21"
+   "18",
+   "18"
   ],
-  "eEff": "22",
+  "eEff": "18",
   "qEff": "0",
   "mass": "592592592592592591",
-  "distrustMass": "148148148148148150",
+  "distrustMass": "37037037037037038",
   "d": [
    "0",
    "0",
    "0",
    "0",
-   "148148148148148150",
+   "37037037037037038",
    "0"
   ],
-  "graphRoot": "0x54676898430ae5a77c9eb5a45b25c53f848d1a9bd14e3e1dd65db7be9d5191af",
-  "vectorRoot": "0x0679bdb6ac0d3ef6915d7b1e3c136d9a37fbc7628f58f1e71834d1cb15ea1b0a",
+  "graphRoot": "0xb46a56a91dea632661cbad3c004975a26d690c4bc8e73e5fa5cd2bfeb03adf3a",
+  "vectorRoot": "0xa56f0f0a178a0e14dec68403e84779a2a6f85fcdbc07f3264e05582df147185a",
   "tight": {
    "r": [
     "1",
@@ -302,8 +321,8 @@
  "calldata": {
   "W": 2,
   "newNodes": "0x0100000002010000000301000000040100000012",
-  "vectors": "0x04a03ce68d21555500000000000000000000000000000000000000000000000004a03ce68d2155550000000000000000008394fd2c2025ed018abef7846071c729b258b3ff958ec1008394fd2c2025ed018abef7846071c731a68ab9a4c2d7b5018abef7846071c7000000000000000034245dd312ddf134018abef7846071c7000000000000000034d478235605816b",
-  "rows": "0x0200000006000000020004271000000007000527100000000100010003000227100000000100032710000000010004d8f000000001000280008df64bacf6b70f7787f8d14429b258b3ff958ec100038000e4cdd1ad7fae7d54441ef12db1a68ab9a4c2d7b500048000734b0e337bfa7d4764f4b806b4245dd312ddf13400058003ea0b21fb2441464f4920ce3e34d478235605816b000227100000000100032710000000010004d8f000000001"
+  "vectors": "0x04a03ce68d21555500000000000000000000000000000000000000000000000004a03ce68d2155550000000000000000008394fd2c2025ed000000000000000029b258b3ff958ec1008394fd2c2025ed000000000000000031a68ab9a4c2d7b5018abef7846071c703157def08c0e38e34245dd312ddf134018abef7846071c7000000000000000034d478235605816b",
+  "rows": "0x02000000060000000200042710000000070005271000000001000100010004271000000001000280008df64bacf6b70f7787f8d14429b258b3ff958ec100038000e4cdd1ad7fae7d54441ef12db1a68ab9a4c2d7b500048000734b0e337bfa7d4764f4b806b4245dd312ddf13400058003ea0b21fb2441464f4920ce3e34d478235605816b000227100000000100032710000000010004d8f000000001"
  },
  "violation": {
   "kind": "fabricated",
@@ -315,8 +334,8 @@
   "wCommitted": 10000,
   "feedbackIndex": 7,
   "affects": "t",
-  "honestValue": "0",
-  "committedValue": "55555555555555555",
+  "honestValue": "111111111111111111",
+  "committedValue": "166666666666666666",
   "mustBe": "rejected at submission (Registry-verified) or provable (Submitter-attested)"
  }
 }

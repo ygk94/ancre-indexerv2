@@ -1,9 +1,9 @@
 {
  "format": "ancre-cert-v1",
  "label": "mainnet_honest_d20",
- "notes": "Acte 1 (d), 9 283 avis, bloc 108 835 675 : ancres 0x0730/0xf7d5, filtre core, D20. #18 porte la copie de la ligne de 0xea0b (wallet de #18, #22, #23) : #2 et #3 reçoivent de la masse, #4 de la méfiance (slash).",
+ "notes": "Acte 1 (d), 9291 avis, bloc 110994810 : ancres 0x0730/0xf7d5, filtre core, D20. #18 porte la copie de la ligne de 0xea0b (wallet de #18, #22, #23) : #2 et #3 reçoivent de la masse, #4 de la méfiance (slash).",
  "alignedWith": "contracts/ENCODING.md unified v1 (2026-10-01), AnchoredReputation v1 (integration 02+04)",
- "identityBlock": 108835675,
+ "identityBlock": 110994810,
  "set": {
   "anchors": [
    "0x0730536018541c5149a049d35528a76c2c8f1e6b",

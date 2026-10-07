@@ -7,7 +7,7 @@
     "dev": "envio dev",
     "start": "envio start",
     "test": "vitest run --test-timeout=20000",
-    "test:parity": "PARITY=1 vitest run test/parity.test.ts test/audit.test.ts --test-timeout=900000",
+    "test:parity": "PARITY=1 vitest run test/parity.test.ts test/audit.test.ts test/ancre.real.test.ts --test-timeout=900000",
     "check": "node --experimental-strip-types scripts/check.ts"
   },
   "devDependencies": {

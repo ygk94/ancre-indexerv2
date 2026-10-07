@@ -5,12 +5,19 @@
 //
 // Checks, per chain:
 //   1. getVersion() of both registries == "2.0.0" (D17 watch)
-//   2. for every rated agent: set(getClients(agent)) == set of indexed clients
+//   2. for EVERY minted agent (from the identity history, not from the indexed feedbacks: an agent whose feedbacks were
+//      all missed must be queried too, review 06/10 CHECKCOV): set(getClients(agent)) == set of indexed clients
 //   3. for every (client, agent) couple: getLastIndex == max indexed feedbackIndex  (=> Σ getLastIndex == #feedbacks)
+//   3b. readFeedback == the indexed row (value, valueDecimals, keccak256(tag1 bytes) == tagHash, isRevoked), for the
+//      latest feedback of every triple, or for every feedback with --full (CHECKCOV: a missed revocation, a lossy tag)
 //   4. mints: ownerOf(maxId) exists and ownerOf(maxId + 1) reverts
 //   5. owner and agentWallet of every agent (--full) or of a 500-agent sample: ownerOf / getAgentWallet
+// GraphQL pagination stops on an EMPTY page, like solver/from_indexer.py (solver/FORMAT.md §7, review 06/10 K22): a
+// server-side row cap below the page size must not truncate silently.
 // Exit code 0 when everything matches, 1 otherwise. Writes a JSON report to stdout.
-import { createPublicClient, http, parseAbi, type Address } from "viem";
+import { realpathSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { createPublicClient, http, keccak256, parseAbi, type Address, type Hex } from "viem";
 
 const args = process.argv.slice(2);
 const opt = (k: string, d: string) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1]! : d; };
@@ -32,7 +39,10 @@ const abi = parseAbi([
   "function getLastIndex(uint256 agentId, address clientAddress) view returns (uint64)",
   "function ownerOf(uint256 tokenId) view returns (address)",
   "function getAgentWallet(uint256 agentId) view returns (address)",
+  // tag1/tag2 read as bytes (same ABI encoding as string): exact bytes, so keccak256 matches indexedTag1 even for invalid UTF-8
+  "function readFeedback(uint256 agentId, address clientAddress, uint64 feedbackIndex) view returns (int128 value, uint8 valueDecimals, bytes tag1, bytes tag2, bool isRevoked)",
 ]);
+export const PAGE = 1000;
 
 async function gql<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
@@ -43,19 +53,50 @@ async function gql<T>(query: string, variables: Record<string, unknown> = {}): P
   return j.data;
 }
 
-/** Keyset pagination over one entity of one chain. */
-async function all<T extends { id: string }>(entity: string, fields: string): Promise<T[]> {
+/** Keyset pagination: pages ordered by id, cursor = last id; stops on an EMPTY page only (K22). */
+export async function paginate<T extends { id: string }>(page: (last: string) => Promise<T[]>): Promise<T[]> {
   const out: T[] = [];
   let last = "";
   for (;;) {
-    const d = await gql<Record<string, T[]>>(
-      `query($c: Int!, $last: String!) { ${entity}(where: {chainId: {_eq: $c}, id: {_gt: $last}}, order_by: {id: asc}, limit: 1000) { id ${fields} } }`,
-      { c: CHAIN, last });
-    const page = d[entity]!;
-    out.push(...page);
-    if (page.length < 1000) return out;
-    last = page[page.length - 1]!.id;
+    const rows = await page(last);
+    if (rows.length === 0) return out;
+    out.push(...rows);
+    last = rows[rows.length - 1]!.id;
   }
+}
+
+/** One entity of one chain. */
+const all = <T extends { id: string }>(entity: string, fields: string): Promise<T[]> => paginate(async (last) =>
+  (await gql<Record<string, T[]>>(
+    `query($c: Int!, $last: String!) { ${entity}(where: {chainId: {_eq: $c}, id: {_gt: $last}}, order_by: {id: asc}, limit: ${PAGE}) { id ${fields} } }`,
+    { c: CHAIN, last }))[entity]!);
+
+export type IndexedFeedback = { id: string; agent_id: string; client: string; feedbackIndex: string; value: string;
+  valueDecimals: number; tagHash: string; triple: string; blockNumber: string; revokedAtBlock: string | null };
+export type ChainFeedback = readonly [bigint, number, Hex, Hex, boolean] | undefined;
+
+/** Differences between an indexed feedback and readFeedback at `block` (empty = identical). */
+export function feedbackDiff(f: IndexedFeedback, r: ChainFeedback, block: bigint): string[] {
+  if (!r) return ["readFeedback failed"];
+  const [value, decimals, tag1] = r;
+  const revoked = f.revokedAtBlock !== null && BigInt(f.revokedAtBlock) <= block;
+  const out: string[] = [];
+  if (value !== BigInt(f.value)) out.push(`value ${value} vs ${f.value}`);
+  if (Number(decimals) !== f.valueDecimals) out.push(`decimals ${decimals} vs ${f.valueDecimals}`);
+  if (keccak256(tag1).toLowerCase() !== f.tagHash.toLowerCase()) out.push("tag1 hash");
+  if (r[4] !== revoked) out.push(`isRevoked ${r[4]} vs ${revoked}`);
+  return out;
+}
+
+/** The feedbacks to compare: every one (--full) or the latest of each (client, agent, tag) triple. */
+export function feedbacksToCompare(fbs: IndexedFeedback[], full: boolean): IndexedFeedback[] {
+  if (full) return fbs;
+  const latest = new Map<string, IndexedFeedback>();
+  for (const f of fbs) {
+    const cur = latest.get(f.triple);
+    if (!cur || BigInt(f.feedbackIndex) > BigInt(cur.feedbackIndex)) latest.set(f.triple, f);
+  }
+  return [...latest.values()];
 }
 
 async function main() {
@@ -83,8 +124,9 @@ async function main() {
   if (vi!.result !== "2.0.0" || vr!.result !== "2.0.0") failures.push(`getVersion ${vi!.result}/${vr!.result}`);
 
   // indexed feedbacks up to the processed block
-  const fbs = (await all<{ id: string; agent_id: string; client: string; feedbackIndex: string; blockNumber: string }>(
-    "Feedback", "agent_id client feedbackIndex blockNumber")).filter((f) => BigInt(f.blockNumber) <= blockNumber);
+  const fbs = (await all<IndexedFeedback>("Feedback",
+    "agent_id client feedbackIndex value valueDecimals tagHash triple blockNumber revokedAtBlock"))
+    .filter((f) => BigInt(f.blockNumber) <= blockNumber);
   const lastIdx = new Map<string, bigint>();
   const clientsOf = new Map<string, Set<string>>();
   for (const f of fbs) {
@@ -95,13 +137,15 @@ async function main() {
   }
   report.feedbacksIndexed = fbs.length;
 
-  // 2. getClients per rated agent
-  const agents = [...clientsOf.keys()];
+  // 2. getClients per MINTED agent (identity history below), not only per rated one (CHECKCOV)
+  const minted = [...new Set((await all<{ id: string; agent_id: string; blockNumber: string }>("OwnerChange", "agent_id blockNumber"))
+    .filter((x) => BigInt(x.blockNumber) <= blockNumber).map((x) => x.agent_id))];
+  const agents = [...new Set([...minted, ...clientsOf.keys()])];
   const gc = await call<Address[]>(agents.map((a) => ({ address: cfg.reputation, functionName: "getClients", args: [BigInt(a)] })));
   let clientsMismatch = 0;
   gc.forEach((r, i) => {
     const onchain = new Set((r.result ?? []).map((x) => x.toLowerCase()));
-    const idx = clientsOf.get(agents[i]!)!;
+    const idx = clientsOf.get(agents[i]!) ?? new Set<string>();
     if (r.status !== "success" || onchain.size !== idx.size || [...idx].some((c) => !onchain.has(c))) {
       clientsMismatch++;
       if (clientsMismatch <= 5) failures.push(`getClients(${agents[i]}): chain ${onchain.size} vs indexed ${idx.size}`);
@@ -126,6 +170,17 @@ async function main() {
   });
   report.getLastIndex = { couples: couples.length, sumOnChain: Number(sumChain), mismatches: lastMismatch };
   if (sumChain !== BigInt(fbs.length)) failures.push(`Σ getLastIndex ${sumChain} != indexed feedbacks ${fbs.length}`);
+
+  // 3b. readFeedback against the indexed rows
+  const cmp = feedbacksToCompare(fbs, FULL);
+  const rf = await call<readonly [bigint, number, Hex, Hex, boolean]>(cmp.map((f) => ({ address: cfg.reputation,
+    functionName: "readFeedback", args: [BigInt(f.agent_id), f.client as Address, BigInt(f.feedbackIndex)] })));
+  let fbMismatch = 0;
+  rf.forEach((r, i) => {
+    const d = feedbackDiff(cmp[i]!, r.status === "success" ? r.result : undefined, blockNumber);
+    if (d.length > 0) { fbMismatch++; if (fbMismatch <= 5) failures.push(`readFeedback(${cmp[i]!.id}): ${d.join(", ")}`); }
+  });
+  report.readFeedback = { compared: cmp.length, full: FULL, mismatches: fbMismatch };
 
   // 4 + 5. agents: owner and wallet AT the checked block, replayed from the layer-1 history (the live indexer may
   // already be past `blockNumber` while we page through GraphQL)
@@ -162,4 +217,7 @@ async function main() {
   process.exit(failures.length === 0 ? 0 : 1);
 }
 
-main().catch((e) => { console.error(e); process.exit(2); });
+// run only when launched as a script (the test imports the helpers); both sides resolved, symlinks included (/tmp on macOS)
+if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))) {
+  main().catch((e) => { console.error(e); process.exit(2); });
+}

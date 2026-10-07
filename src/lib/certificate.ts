@@ -12,6 +12,9 @@ export type CertEdge = { dst: number; w: number; feedbackIndex: number };
 export type CertRow = {
   u: number; src?: string; viaOwner: boolean; sPlus?: number; aliasOf?: number;
   edges: CertEdge[]; sPlusEffective: number; leaf: Hex;
+  /** Shape / canonical-form breaks the contract refuses at submission (02-bis: NotCanonical, EdgeMismatch(row, 256)).
+   *  Decoded anyway, so that the certificate is still audited (review 06/10, DECODE); the audit reports SHAPE. */
+  notes: string[];
 };
 export type DecodedRows = { W: 2 | 4; rows: CertRow[] };
 export type NewNode = { kind: "agent"; agentId: bigint } | { kind: "address"; address: string };
@@ -38,7 +41,9 @@ const NE_MASK = 0x0fff;
 
 /**
  * rows = W:u8 ‖ numRows:u32 ‖ row*;  row = u:W ‖ hdr:u16 ‖ [src:20] ‖ [sPlus:u32] ‖ [ref:W] ‖ (dst:W ‖ w:int16 ‖ feedbackIndex:u32)*nE
- * Leaf = the row bytes from u to its last byte. Structural and shape checks mirror the contract (ENCODING §3.2);
+ * Leaf = the row bytes from u to its last byte. Structural checks mirror the contract (ENCODING §3.2) and throw;
+ * shape and canonical-form breaks (zero SRC, SRC/VIA_OWNER on an anchor row, VIA_OWNER without SRC, SPLUS equal to the
+ * committed sum) are recorded in `row.notes` instead: a zero SRC reads as "no source", as the contract reads it.
  * `k` (number of anchors) enables the anchor-specific checks.
  */
 export function decodeRows(hex: string, nCert?: number, k?: number): DecodedRows {
@@ -60,15 +65,20 @@ export function decodeRows(hex: string, nCert?: number, k?: number): DecodedRows
     if (nE > 256) throw new EncodingError(`row ${r}: nE ${nE} > ROW_MAX`);
     if (u <= prevU || (nCert !== undefined && u >= nCert)) throw new EncodingError(`row ${r}: bad u ${u}`);
     prevU = u;
+    const notes: string[] = [];
     let src: string | undefined;
-    if (hdr & SRC) { if (o + 20 > b.length) throw new EncodingError("truncated src"); src = toHex(b.subarray(o, o + 20)).toLowerCase(); o += 20; }
+    if (hdr & SRC) {
+      if (o + 20 > b.length) throw new EncodingError("truncated src");
+      src = toHex(b.subarray(o, o + 20)).toLowerCase(); o += 20;
+      if (/^0x0{40}$/.test(src)) { src = undefined; notes.push("zero SRC (NotCanonical)"); } // client 0 = no source
+    }
     let sPlus: number | undefined;
     if (hdr & SPLUS) { sPlus = uint(b, o, 4); o += 4; }
     let aliasOf: number | undefined;
     if (hdr & ALIAS) { aliasOf = uint(b, o, W); o += W; }
     const viaOwner = (hdr & VIA_OWNER) !== 0;
-    if (viaOwner && !src) throw new EncodingError(`row ${r}: VIA_OWNER without SRC`);
-    if (k !== undefined && u < k && (src || viaOwner)) throw new EncodingError(`row ${r}: anchor row with SRC/VIA_OWNER`);
+    if (viaOwner && !src) notes.push("VIA_OWNER without SRC");
+    if (k !== undefined && u < k && ((hdr & SRC) || viaOwner)) notes.push("anchor row with SRC/VIA_OWNER");
     const edges: CertEdge[] = [];
     let prevDst = -1;
     for (let e = 0; e < nE; e++) {
@@ -83,6 +93,7 @@ export function decodeRows(hex: string, nCert?: number, k?: number): DecodedRows
     }
     const committedPlus = edges.reduce((s, e) => s + (e.w > 0 ? e.w : 0), 0);
     if (sPlus !== undefined && sPlus < Math.max(1, committedPlus)) throw new EncodingError(`row ${r}: sPlus below committed Σw+`); // BadRows(7)
+    if (sPlus !== undefined && sPlus === committedPlus) notes.push("SPLUS equal to the committed sum (NotCanonical)");
     let row: CertRow;
     if (aliasOf !== undefined) {
       const ref = byU.get(aliasOf);
@@ -90,9 +101,9 @@ export function decodeRows(hex: string, nCert?: number, k?: number): DecodedRows
       if (!ref || ref.aliasOf !== undefined || (k !== undefined && u < k)) throw new EncodingError(`row ${r}: bad alias ref`); // BadRows(9)
       if (!src || ref.src !== src) throw new EncodingError(`row ${r}: alias source differs from ref`);              // BadRows(10)
       row = { u, src, viaOwner, aliasOf, edges: ref.edges, sPlusEffective: ref.sPlusEffective, // shared, never mutated
-        leaf: keccak256(b.subarray(start, o)) };
+        leaf: keccak256(b.subarray(start, o)), notes };
     } else {
-      row = { u, src, viaOwner, sPlus, edges, sPlusEffective: sPlus ?? committedPlus, leaf: keccak256(b.subarray(start, o)) };
+      row = { u, src, viaOwner, sPlus, edges, sPlusEffective: sPlus ?? committedPlus, leaf: keccak256(b.subarray(start, o)), notes };
     }
     rows.push(row);
     byU.set(u, row);
@@ -124,7 +135,9 @@ export function decodeNewNodes(hex: string): NewNode[] {
     if (kind === 1) { out.push({ kind: "agent", agentId: BigInt(uint(b, o, 4)) }); o += 4; }
     else if (kind === 2) {
       if (o + 20 > b.length) throw new EncodingError("truncated address node");
-      out.push({ kind: "address", address: toHex(b.subarray(o, o + 20)).toLowerCase() }); o += 20;
+      const address = toHex(b.subarray(o, o + 20)).toLowerCase();
+      if (/^0x0{40}$/.test(address)) throw new EncodingError("address(0) node (BadNodes, R1)"); // contract 02-bis
+      out.push({ kind: "address", address }); o += 20;
     } else throw new EncodingError(`bad node kind ${kind}`);
   }
   return out;

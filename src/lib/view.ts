@@ -2,12 +2,13 @@
 // (both expose Entity.get / Entity.getWhere on the current chain).
 import type { RegistryView } from "./audit.js";
 import type { EdgeSchema, TagKind, TagSpec } from "./rules.js";
+import { schemaTagHash, tripleId } from "./text.js";
 
 type Getter<T> = { get(id: string): Promise<T | undefined> };
 type Store = {
   Agent: Getter<{ owner: string; wallet: string; approved: string }>;
   Operator: Getter<{ active: boolean }>;
-  Feedback: Getter<{ tag1: string; value: bigint; valueDecimals: number; feedbackIndex: bigint }>;
+  Feedback: Getter<{ value: bigint; valueDecimals: number; feedbackIndex: bigint }>;
   TripleLatest: Getter<{ feedback_id?: string }> & {
     getWhere(filter: { client: { _eq: string } }): Promise<{ agent_id: string; feedback_id?: string }[]>;
   };
@@ -17,10 +18,11 @@ export function storeView(s: Store): RegistryView {
   return {
     agent: (id) => s.Agent.get(id),
     isOperator: async (owner, client) => (await s.Operator.get(`${owner}-${client}`))?.active ?? false,
+    // keyed by keccak256(tag): the schema's tag text is hashed, the stored (display) text is never compared (NUL)
     latest: async (client, agentId, tag1) => {
-      const t = await s.TripleLatest.get(`${client}-${agentId}-${tag1}`);
+      const t = await s.TripleLatest.get(tripleId(client, agentId, schemaTagHash(tag1)));
       const f = t?.feedback_id ? await s.Feedback.get(t.feedback_id) : undefined;
-      return f && { tag1: f.tag1, value: f.value, decimals: f.valueDecimals, feedbackIndex: f.feedbackIndex };
+      return f && { tag1, value: f.value, decimals: f.valueDecimals, feedbackIndex: f.feedbackIndex };
     },
     agentsRatedBy: async (client) => {
       const rows = await s.TripleLatest.getWhere({ client: { _eq: client } });

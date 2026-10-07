@@ -21,7 +21,7 @@ const view: RegistryView = {
 };
 const nodes: NodeInfo[] = [{ kind: "anchor", address: A }, { kind: "agent", agentId: 7n }, { kind: "agent", agentId: 9n }];
 const row = (r: Partial<CertRow> & { u: number }): CertRow =>
-  ({ viaOwner: false, edges: [], sPlusEffective: 0, leaf: "0x00", ...r }) as CertRow;
+  ({ viaOwner: false, edges: [], sPlusEffective: 0, leaf: "0x00", notes: [], ...r }) as CertRow;
 const kinds = async (rows: CertRow[]) => (await auditRows(view, REF, nodes, 3, rows)).discrepancies.map((d) => d.kind);
 
 describe("audit rules (fake registry)", () => {

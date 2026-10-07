@@ -12,16 +12,21 @@ layer. It does three things:
    - latest non-revoked feedback per (client, agent, tag), with negative dominance across tags;
    - endorsement tags only;
    - out-of-range values rejected, never capped;
-   - no feedback from the target's own controllers (owner, operator, `agentWallet`, approved).
+   - no positive feedback from the target's own controllers (owner, operator, `agentWallet`, approved); a
+     controller's negative feedback is kept, so an owner cannot silence a critic by approving it;
+   - tags matched by their keccak256 hash, as the contract does: no tag text ever enters a key or an index.
 
    Wallets and owners are rebuilt **from events only**, because Monad serves no historical state beyond
    ~40k blocks.
 2. **Audits certificates.** It decodes a certificate's calldata and compares every committed edge with the
    registry, as normalised shares `w / B`. Fabricated, inflated, diluted or omitted edges become typed
-   discrepancies, ready for an on-chain dispute (`proveEdge` / `proveWallet` of the ANCRE contract). The
-   decoder (certificate format `ancre-cert-v1`) and the audit are done and tested on real data. The event handler
-   will be wired to the ANCRE contract once it is deployed; a handler reading `transaction.input` is proven to work
-   on real Monad transactions.
+   discrepancies, each filed on the edge whose on-chain proof corrects it (`proveEdge` / `proveWallet` of the
+   ANCRE contract). Calls made through a Safe, Multicall3 or a smart account are read from the nested calldata,
+   and the node table is read back from the contract (`nodeKeyAt`, Effect API) when the calldata is unavailable. The
+   decoder (certificate format `ancre-cert-v1`) and the audit run **inside the event handler** of the ANCRE contract:
+   every `CertificateSubmitted` gets a `Certificate` row (status, Merkle root check), its `Discrepancy` findings and the
+   set's `SetHealth`. Tested on Monad's real state with the real calldata of the normative certificates. The contract
+   address is a placeholder until the deployment.
 3. **Measures the standard with HyperSync.** A multichain scan shows how few ERC-8004 feedbacks survive the
    rules (see below).
 
@@ -55,6 +60,7 @@ reorg rolls back its own chain only. Real volume measured on 2026-09-28: 55 138 
 | 1 · append-only history (replays any past block) | `Feedback`, `WalletChange`, `OwnerChange`, `ApprovalChange`, `OperatorChange`, `RegistryEvent` |
 | 2 · current state | `Agent`, `WalletAgents` (reverse wallet → agents index, absent on-chain), `Operator` |
 | 3 · normative edges | `TripleLatest` (every tag), `SetEdge` per anchor set (`ref` = reference schema), with a typed rejection reason (`null` = retained) |
+| ANCRE audit | `AnchorSet` (on-chain sets), `SetNode`, `Certificate`, `Discrepancy` (with the on-chain proof to use), `SetHealth` |
 | stats | `ChainStats` |
 
 ```graphql
@@ -75,9 +81,9 @@ pnpm dev            # Postgres + Hasura in Docker; GraphQL on http://localhost:8
 
 | Command | What it proves |
 |---|---|
-| `pnpm test` | Rule unit tests on real cases, simulated: the slash-then-review on agent #4, #8317 rating itself 78 times through its own `agentWallet`, a 1e38 value, a transfer, a revocation, a tie between tags |
+| `pnpm test` | Rule unit tests on real cases, simulated: the slash-then-review on agent #4, #8317 rating itself 78 times through its own `agentWallet`, a 1e38 value, a transfer, a revocation, a tie between tags; hostile inputs (NUL and 4 KiB tags, uint32 parameters, relayed calls, wallet changed in the registration callback). In the monorepo, also the parity and audit checks below **without HyperSync**, by replaying the real history dumped from the indexer |
 | `pnpm test:parity` | Replays the **real history** of each chain and checks that the edges are identical to the reference solver's: 11 edges on Monad at block 108 434 518, 28 on the testnet, 10 on Optimism. Then audits real certificates against Monad's rebuilt state: 4 honest certificates → 0 discrepancy; the 4 normative violations (fabricated, inflated, omitted negative, dilution) and tampered variants (wrong source, ghost agent, opposite sign) → caught |
-| `pnpm check --chain 143 --full` | Live consistency with the registries, at the block the indexer has processed, through Multicall3: Σ `getLastIndex` = #feedbacks, `getClients`, owner and wallet of **every** agent, mint count, `getVersion` |
+| `pnpm check --chain 143 --full` | Live consistency with the registries, at the block the indexer has processed, through Multicall3: Σ `getLastIndex` = #feedbacks, `getClients` of **every minted** agent, `readFeedback` (value, decimals, tag hash, revocation) of the latest feedback of every triple (of every feedback with `--full`), owner and wallet of **every** agent, mint count, `getVersion` |
 
 ## HyperSync survival scan
 
