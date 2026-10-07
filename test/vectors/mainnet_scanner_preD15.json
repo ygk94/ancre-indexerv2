@@ -3,7 +3,7 @@
  "label": "mainnet_scanner_preD15",
  "notes": "Acte 1 (b) SANS D15 (schéma modifié : tout propage) : fuite du scanner vers la ferme. Grand certificat.",
  "alignedWith": "contracts/ENCODING.md unified v1 (2026-10-01), AnchoredReputation v1 (integration 02+04)",
- "identityBlock": 108835675,
+ "identityBlock": 110994810,
  "set": {
   "anchors": [
    "0x0730536018541c5149a049d35528a76c2c8f1e6b",

@@ -8,9 +8,13 @@
 //   D18  normative weight: int16 on the 1e-4 grid, truncation toward zero.
 //   CR   out-of-bounds value -> rejected, never capped; bounds compared on the exact value.
 //        Out-of-bounds latest feedback gives nothing for that tag (no fallback to an older one).
-//   D16/D20  reject when the client is a CURRENT controller of the target
-//        (owner, operator of the owner, agentWallet, approved). The "past owner" rule is removed (D20).
+//   D16/D20/D48-B  reject when the client is a CURRENT controller of the target (owner, operator of the owner,
+//        agentWallet, approved) AND the combined weight is POSITIVE; a controller's NEGATIVE edge is kept (rule B,
+//        contract 02-bis `_edgeHolds`, solver 04-bis R6). The "past owner" rule is removed (D20).
+//   DEC18 valueDecimals > 18 (impossible in registry v2.0.0, possible after an upgrade): the tag gives nothing, as the
+//        contract's `_normalize` returns (false, 0); never an exception that would stop the indexer.
 import schemaJson from "./schema_reference.json" with { type: "json" };
+import { tagHash } from "./text.js";
 
 export const WAD = 10n ** 18n;
 export const GRID = 10_000n;
@@ -54,11 +58,14 @@ export function isEdgeTag(tag1: string, schema: EdgeSchema = REF): boolean {
   return schema.filter.has(tag1) && schema.specs.get(tag1)?.kind === "endorsement";
 }
 export const isRefTag = (tag1: string) => isEdgeTag(tag1, REF);
+/** Reference edge tags by keccak256 (a feedback is matched by its tag hash, never by its decoded text: NUL). */
+const REF_BY_HASH = new Map<string, string>([...REF_FILTER_SET].filter((t) => isRefTag(t)).map((t) => [tagHash(t), t]));
+export const refTagOfHash = (hash: string): string | undefined => REF_BY_HASH.get(hash.toLowerCase());
 
 /** graph.quantize: q in [-10000, 10000] or undefined when out of bounds. */
 export function quantize(value: bigint, decimals: number, spec: TagSpec): number | undefined {
   if (value > VALUE_ABS_MAX || value < -VALUE_ABS_MAX) return undefined;
-  if (decimals < 0 || decimals > 18) throw new Error("valueDecimals out of [0,18]");
+  if (!Number.isInteger(decimals) || decimals < 0 || decimals > 18) return undefined; // DEC18: rejected like _normalize
   const v = value * 10n ** BigInt(18 - decimals);
   if (v < spec.minWad || v > spec.maxWad) return undefined;
   if (v >= spec.neutralWad) {

@@ -1,0 +1,963 @@
+[
+ {
+  "type": "function",
+  "name": "addNodes",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   },
+   {
+    "name": "entries",
+    "type": "bytes",
+    "internalType": "bytes"
+   }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "computeSetId",
+  "inputs": [
+   {
+    "name": "p",
+    "type": "tuple",
+    "internalType": "struct AnchoredReputation.SetParams",
+    "components": [
+     {
+      "name": "anchors",
+      "type": "address[]",
+      "internalType": "address[]"
+     },
+     {
+      "name": "lambdas",
+      "type": "uint64[]",
+      "internalType": "uint64[]"
+     },
+     {
+      "name": "alphaN",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "alphaD",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "tagSchemaHash",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "tags",
+      "type": "tuple[]",
+      "internalType": "struct AnchoredReputation.TagSpec[]",
+      "components": [
+       {
+        "name": "tag",
+        "type": "string",
+        "internalType": "string"
+       },
+       {
+        "name": "min",
+        "type": "int128",
+        "internalType": "int128"
+       },
+       {
+        "name": "neutral",
+        "type": "int128",
+        "internalType": "int128"
+       },
+       {
+        "name": "max",
+        "type": "int128",
+        "internalType": "int128"
+       },
+       {
+        "name": "kind",
+        "type": "uint8",
+        "internalType": "uint8"
+       }
+      ]
+     },
+     {
+      "name": "policy",
+      "type": "tuple",
+      "internalType": "struct AnchoredReputation.Policy",
+      "components": [
+       {
+        "name": "theta",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "rhoN",
+        "type": "uint32",
+        "internalType": "uint32"
+       },
+       {
+        "name": "rhoD",
+        "type": "uint32",
+        "internalType": "uint32"
+       },
+       {
+        "name": "minAnchors",
+        "type": "uint8",
+        "internalType": "uint8"
+       },
+       {
+        "name": "vetoQuorum",
+        "type": "uint8",
+        "internalType": "uint8"
+       },
+       {
+        "name": "vetoMax",
+        "type": "int16",
+        "internalType": "int16"
+       },
+       {
+        "name": "maxAge",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "minRefresh",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "slackRefresh",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "eLowMax",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "strictTransfer",
+        "type": "bool",
+        "internalType": "bool"
+       },
+       {
+        "name": "registryVerified",
+        "type": "bool",
+        "internalType": "bool"
+       },
+       {
+        "name": "ownerFallback",
+        "type": "bool",
+        "internalType": "bool"
+       },
+       {
+        "name": "submitters",
+        "type": "address[]",
+        "internalType": "address[]"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "outputs": [
+   {
+    "name": "",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ],
+  "stateMutability": "pure"
+ },
+ {
+  "type": "function",
+  "name": "nodeCount",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ],
+  "outputs": [
+   {
+    "name": "",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "nodeKeyAt",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   },
+   {
+    "name": "i",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ],
+  "outputs": [
+   {
+    "name": "key",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "registerAnchorSet",
+  "inputs": [
+   {
+    "name": "p",
+    "type": "tuple",
+    "internalType": "struct AnchoredReputation.SetParams",
+    "components": [
+     {
+      "name": "anchors",
+      "type": "address[]",
+      "internalType": "address[]"
+     },
+     {
+      "name": "lambdas",
+      "type": "uint64[]",
+      "internalType": "uint64[]"
+     },
+     {
+      "name": "alphaN",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "alphaD",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "tagSchemaHash",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "tags",
+      "type": "tuple[]",
+      "internalType": "struct AnchoredReputation.TagSpec[]",
+      "components": [
+       {
+        "name": "tag",
+        "type": "string",
+        "internalType": "string"
+       },
+       {
+        "name": "min",
+        "type": "int128",
+        "internalType": "int128"
+       },
+       {
+        "name": "neutral",
+        "type": "int128",
+        "internalType": "int128"
+       },
+       {
+        "name": "max",
+        "type": "int128",
+        "internalType": "int128"
+       },
+       {
+        "name": "kind",
+        "type": "uint8",
+        "internalType": "uint8"
+       }
+      ]
+     },
+     {
+      "name": "policy",
+      "type": "tuple",
+      "internalType": "struct AnchoredReputation.Policy",
+      "components": [
+       {
+        "name": "theta",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "rhoN",
+        "type": "uint32",
+        "internalType": "uint32"
+       },
+       {
+        "name": "rhoD",
+        "type": "uint32",
+        "internalType": "uint32"
+       },
+       {
+        "name": "minAnchors",
+        "type": "uint8",
+        "internalType": "uint8"
+       },
+       {
+        "name": "vetoQuorum",
+        "type": "uint8",
+        "internalType": "uint8"
+       },
+       {
+        "name": "vetoMax",
+        "type": "int16",
+        "internalType": "int16"
+       },
+       {
+        "name": "maxAge",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "minRefresh",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "slackRefresh",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "eLowMax",
+        "type": "uint64",
+        "internalType": "uint64"
+       },
+       {
+        "name": "strictTransfer",
+        "type": "bool",
+        "internalType": "bool"
+       },
+       {
+        "name": "registryVerified",
+        "type": "bool",
+        "internalType": "bool"
+       },
+       {
+        "name": "ownerFallback",
+        "type": "bool",
+        "internalType": "bool"
+       },
+       {
+        "name": "submitters",
+        "type": "address[]",
+        "internalType": "address[]"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "outputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "reserveCapacity",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   },
+   {
+    "name": "uptoNodes",
+    "type": "uint32",
+    "internalType": "uint32"
+   }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "submitCertificate",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   },
+   {
+    "name": "nCert",
+    "type": "uint32",
+    "internalType": "uint32"
+   },
+   {
+    "name": "eMax",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "newNodes",
+    "type": "bytes",
+    "internalType": "bytes"
+   },
+   {
+    "name": "vectors",
+    "type": "bytes",
+    "internalType": "bytes"
+   },
+   {
+    "name": "rows",
+    "type": "bytes",
+    "internalType": "bytes"
+   }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "event",
+  "name": "AnchorSetRegistered",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "anchors",
+    "type": "address[]",
+    "indexed": false,
+    "internalType": "address[]"
+   },
+   {
+    "name": "lambdas",
+    "type": "uint64[]",
+    "indexed": false,
+    "internalType": "uint64[]"
+   },
+   {
+    "name": "alphaN",
+    "type": "uint32",
+    "indexed": false,
+    "internalType": "uint32"
+   },
+   {
+    "name": "alphaD",
+    "type": "uint32",
+    "indexed": false,
+    "internalType": "uint32"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "ApprovalProven",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "agentId",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   },
+   {
+    "name": "anchor",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "CertificateSubmitted",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "certBlock",
+    "type": "uint64",
+    "indexed": true,
+    "internalType": "uint64"
+   },
+   {
+    "name": "eEff",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   },
+   {
+    "name": "graphRoot",
+    "type": "bytes32",
+    "indexed": false,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "vectorRoot",
+    "type": "bytes32",
+    "indexed": false,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "versionHash",
+    "type": "bytes32",
+    "indexed": false,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "nCert",
+    "type": "uint32",
+    "indexed": false,
+    "internalType": "uint32"
+   },
+   {
+    "name": "numRows",
+    "type": "uint32",
+    "indexed": false,
+    "internalType": "uint32"
+   },
+   {
+    "name": "registryVerified",
+    "type": "bool",
+    "indexed": false,
+    "internalType": "bool"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "EdgeFact",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "client",
+    "type": "address",
+    "indexed": true,
+    "internalType": "address"
+   },
+   {
+    "name": "agentId",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   },
+   {
+    "name": "w",
+    "type": "int256",
+    "indexed": false,
+    "internalType": "int256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "EdgeProven",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "node",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   },
+   {
+    "name": "agentId",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   },
+   {
+    "name": "wOld",
+    "type": "int256",
+    "indexed": false,
+    "internalType": "int256"
+   },
+   {
+    "name": "wNew",
+    "type": "int256",
+    "indexed": false,
+    "internalType": "int256"
+   },
+   {
+    "name": "eLowEff",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   },
+   {
+    "name": "eEff",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "NodesAdded",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "fromIndex",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   },
+   {
+    "name": "count",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "RegistryChanged",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "certifiedVersionHash",
+    "type": "bytes32",
+    "indexed": false,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "currentVersionHash",
+    "type": "bytes32",
+    "indexed": false,
+    "internalType": "bytes32"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "RowVoided",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "node",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   },
+   {
+    "name": "eLowEff",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   },
+   {
+    "name": "eEff",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "SourceFactCleared",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "node",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "TransferFlagged",
+  "inputs": [
+   {
+    "name": "setId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "agentId",
+    "type": "uint256",
+    "indexed": true,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "error",
+  "name": "AlreadyRegistered",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "AnchorAsSource",
+  "inputs": [
+   {
+    "name": "node",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "BadEdge",
+  "inputs": [
+   {
+    "name": "row",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "BadNCert",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "BadNodes",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "BadParams",
+  "inputs": [
+   {
+    "name": "code",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "BadProof",
+  "inputs": [
+   {
+    "name": "code",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "BadRows",
+  "inputs": [
+   {
+    "name": "code",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "BadVectors",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "EdgeMismatch",
+  "inputs": [
+   {
+    "name": "row",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "edge",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "NoCert",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "NodeExists",
+  "inputs": [
+   {
+    "name": "key",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "NotBetter",
+  "inputs": [
+   {
+    "name": "qNew",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "qCur",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "massNew",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "massCur",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "NotCanonical",
+  "inputs": [
+   {
+    "name": "row",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "NotSubSolution",
+  "inputs": [
+   {
+    "name": "column",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "node",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "NotSubmitter",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "NothingToProve",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "ProvenRowResubmitted",
+  "inputs": [
+   {
+    "name": "node",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "RegistryUnreadable",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "ResidualTooLarge",
+  "inputs": [
+   {
+    "name": "eEff",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "eMax",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "UnknownSet",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "ValueTooLarge",
+  "inputs": []
+ }
+]

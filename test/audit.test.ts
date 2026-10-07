@@ -11,8 +11,11 @@ import { setSchema, storeView } from "../src/lib/view.js";
 
 const LOCAL = new URL("./vectors/", import.meta.url); // standalone repo; ../../solver/vectors in the monorepo
 const DIR = existsSync(LOCAL) ? LOCAL : new URL("../../solver/vectors/", import.meta.url);
-const BLOCK = 108_835_675;
 const load = (f: string) => JSON.parse(readFileSync(new URL(f, DIR), "utf8"));
+// identity block of the vectors: 108 835 675 for main's (01/10), 110 994 810 after the 04-bis regeneration (D48)
+const BLOCK: number = existsSync(DIR) ? load("mainnet_slash_anchor.json").identityBlock : 0;
+const PRE_D48 = BLOCK === 108_835_675; // main's slash_anchor makes the anchor 0xea0b the source of #18 (AnchorAsSource)
+const anchorSourced = (d: { kind: string; note?: string }) => d.kind === "SHAPE" && /AnchorAsSource/.test(d.note ?? "");
 
 function prepare(v: any) {
   const k = v.set.anchors.length;
@@ -29,7 +32,8 @@ describe.runIf(process.env.PARITY === "1" && existsSync(DIR))("certificate audit
     const view: RegistryView = storeView(ix as never);
     const audit = async (v: any, rows?: CertRow[], nodes?: NodeInfo[]) => {
       const p = prepare(v);
-      return auditRows(view, p.schema, nodes ?? p.nodes, v.nCert, rows ?? p.rows, p.opts);
+      const r = await auditRows(view, p.schema, nodes ?? p.nodes, v.nCert, rows ?? p.rows, p.opts);
+      return { ...r, discrepancies: r.discrepancies.filter((d) => !(PRE_D48 && anchorSourced(d))) };
     };
 
     // 1. honest certificates, Registry-verified, as accepted on chain by the contract (FORMAT.md §5)
@@ -47,7 +51,8 @@ describe.runIf(process.env.PARITY === "1" && existsSync(DIR))("certificate audit
     t.expect(await kinds("violations/inflated.json")).toEqual([["INFLATED", "4"]]);                  // #18's slash on #4 committed as -1
     t.expect(await kinds("violations/omitted_negative.json")).toEqual([["OMITTED_NEG", "4"], ["OMITTED_NEG", "4"]]); // anchor row + copy
     const dil = (await audit(load("violations/dilution.json"))).discrepancies;                         // #18 -> #3 omitted, sPlus undeclared
-    t.expect(dil.map((d) => [d.kind, d.agentId, d.bCommitted, d.bRegistry])).toEqual([["INFLATED", "2", 10_000, 20_000]]);
+    // SW1 (review 06/10): filed on the OMITTED edge #3, whose proveEdge succeeds, not on its sibling #2
+    t.expect(dil.map((d) => [d.kind, d.agentId, d.bCommitted, d.bRegistry])).toEqual([["DILUTION", "3", 10_000, 20_000]]);
 
     // 3. tampered variants of the honest slash_anchor certificate
     const v = load("mainnet_slash_anchor.json");
@@ -61,7 +66,7 @@ describe.runIf(process.env.PARITY === "1" && existsSync(DIR))("certificate audit
     const r1 = declared.find((r) => r.u === ea0b)!;
     r1.edges = r1.edges.filter((e) => e.dst !== node(2));
     r1.sPlusEffective = 10_000; // not declared: B+ falls back to the committed sum
-    t.expect((await audit(v, declared)).discrepancies.map((d) => [d.kind, d.agentId])).toEqual([["INFLATED", "3"]]); // undeclared: diluted
+    t.expect((await audit(v, declared)).discrepancies.map((d) => [d.kind, d.agentId])).toEqual([["DILUTION", "2"]]); // undeclared: diluted
     r1.sPlusEffective = 20_000;
     t.expect((await audit(v, declared)).discrepancies).toEqual([]);                                     // declared: fine
 
@@ -81,13 +86,15 @@ describe.runIf(process.env.PARITY === "1" && existsSync(DIR))("certificate audit
     r18.src = "0x000000000000000000000000000000000000dead";
     r18.edges = [];
     r18.sPlusEffective = 0;
-    t.expect((await audit(v, hide)).discrepancies.map((d) => [d.kind, d.agentId])).toEqual([["SOURCE", "18"], ["OMITTED_NEG", "4"]]);
+    t.expect((await audit(v, hide)).discrepancies.map((d) => [d.kind, d.agentId])).toEqual(
+      [["SOURCE", "18"], ["DILUTION", "2"], ["DILUTION", "3"], ["OMITTED_NEG", "4"]]); // positive omissions shown too (SW1)
 
     // a row for an agent node never minted -> UNKNOWN_AGENT; every edge to it is FABRICATED (no silent skip)
     const ghostNodes = p.nodes.map((n, i) => (i === node(3) ? { kind: "agent" as const, agentId: 999_999n } : n));
     const ghost = clone();
     ghost.find((r) => r.u === node(3))!.edges = [{ dst: node(4), w: 10_000, feedbackIndex: 1 }];
     t.expect((await audit(v, ghost, ghostNodes)).discrepancies.map((d) => [d.kind, d.u])).toEqual(
-      [["FABRICATED", ea0b], ["UNKNOWN_AGENT", node(3)], ["FABRICATED", node(3)], ["FABRICATED", node(18)]]);
+      [["FABRICATED", ea0b], ["DILUTION", ea0b], ["UNKNOWN_AGENT", node(3)], ["FABRICATED", node(3)], ["FABRICATED", node(18)],
+       ["DILUTION", node(18)]]); // the true edge to the real #3 is now missing from both rows: diluted once the ghost is proven
   }, 900_000);
 });

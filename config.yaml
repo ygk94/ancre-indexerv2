@@ -22,6 +22,16 @@ contracts:
       - event: "FeedbackRevoked(uint256 indexed agentId, address indexed clientAddress, uint64 indexed feedbackIndex)"
       - event: "Upgraded(address indexed implementation)"
       - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+  - name: AnchoredReputation       # ANCRE verifier (contracts/src/AnchoredReputation.sol, format ancre-cert-v1)
+    abi_file_path: abis/AnchoredReputation.json
+    events:
+      - event: "AnchorSetRegistered(bytes32 indexed setId, address[] anchors, uint64[] lambdas, uint32 alphaN, uint32 alphaD)"
+      - event: "NodesAdded(bytes32 indexed setId, uint256 fromIndex, uint256 count)"
+      - event: "CertificateSubmitted(bytes32 indexed setId, uint64 indexed certBlock, uint256 eEff, bytes32 graphRoot, bytes32 vectorRoot, bytes32 versionHash, uint32 nCert, uint32 numRows, bool registryVerified)"
+      - event: "EdgeProven(bytes32 indexed setId, uint256 indexed node, uint256 indexed agentId, int256 wOld, int256 wNew, uint256 eLowEff, uint256 eEff)"
+      - event: "RowVoided(bytes32 indexed setId, uint256 indexed node, uint256 eLowEff, uint256 eEff)"
+      - event: "TransferFlagged(bytes32 indexed setId, uint256 indexed agentId)"
+      - event: "RegistryChanged(bytes32 indexed setId, bytes32 certifiedVersionHash, bytes32 currentVersionHash)"
 chains:
   - id: 143                         # Monad mainnet
     start_block: 52952790           # Identity proxy deployment (Reputation: 52952794), MESURÉ 27/09
@@ -30,6 +40,9 @@ chains:
         address: "0x8004a169fb4a3325136eb29fa0ceb6d2e539a432"
       - name: ReputationRegistry
         address: "0x8004baa17c55a88189ae136b182e5fda19de9b63"
+      # ANCRE_MAINNET_ADDRESS: placeholder (no code, no logs) until the minimal mainnet run (D40).
+      - name: AnchoredReputation
+        address: "0x0000000000000000000000000000000000000001"
   - id: 10143                       # Monad testnet: ERC-8004 v2.0.0 at the "testnet" addresses
     start_block: 10391697           # first Upgraded of the proxies (HyperSync, MESURÉ 28/09)
     contracts:
@@ -37,6 +50,10 @@ chains:
         address: "0x8004a818bfb912233c491871b3d84c89a494bd9e"
       - name: ReputationRegistry
         address: "0x8004b663056a597dffe9eccc1965a193b7388713"
+      # ANCRE_TESTNET_ADDRESS: official testnet instance = the one deployed by the real act 2 run of 07/10
+      # (run-20261007T131141Z, deploy tx 0xe8ce…147f, block 68 978 842; the chain start_block above covers it).
+      - name: AnchoredReputation
+        address: "0x8be6d3dd7f20b94cd9b1ec51de199291b109da9b"
   - id: 10                          # Optimism: 3rd chain (chantier 03 recommendation 28/09, reversible; see journal E1b)
     start_block: 147514947          # Identity proxy deployment, MESURÉ 27/09
     max_reorg_depth: 200            # Envio defaults to 0 (no rollback) on OP chains

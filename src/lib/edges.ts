@@ -1,4 +1,4 @@
-// The one normative edge decision (D14, D15, bounds, D16/D20), shared by SetEdge (layer 3) and the certificate
+// The one normative edge decision (D14, D15, bounds, D16/D20 with rule B of D48), shared by SetEdge (layer 3) and the certificate
 // audit, so that the rule tested in parity with solver/graph.py is the rule the audit applies.
 import { combine, controllerReason, isEdgeTag, REJECT_OF, type EdgeSchema, type TagCandidate } from "./rules.js";
 
@@ -22,8 +22,11 @@ export async function edgeDecision(view: EdgeView, schema: EdgeSchema, client: s
   const c = combine(cands.filter((x): x is TagCandidate => x !== undefined), schema);
   if (!c) return undefined;
   if (c.kind === "none" && c.reason === "OUT_OF_BOUNDS") return { w: 0, rejected: "OUT_OF_BOUNDS" };
-  const why = agent ? controllerReason(client, agent, await view.isOperator(agent.owner, client)) : undefined;
-  if (why) return { w: 0, rejected: REJECT_OF[why] };
   if (c.kind === "none") return { w: 0, rejected: "ZERO_WEIGHT" };
+  // R6 + D48-B: a current controller gives no POSITIVE edge; its negative edge is kept (sign of the R5 combination)
+  if (c.w > 0) {
+    const why = agent ? controllerReason(client, agent, await view.isOperator(agent.owner, client)) : undefined;
+    if (why) return { w: 0, rejected: REJECT_OF[why] };
+  }
   return { w: c.w, tag1: c.tag1, feedbackIndex: c.feedbackIndex };
 }
