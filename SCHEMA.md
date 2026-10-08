@@ -6,7 +6,7 @@ they mean and how to read them. Change log at the bottom.
 ## Access
 
 - GraphQL (Hasura). Local: `http://localhost:8080/v1/graphql` after `pnpm dev` (admin secret `testing`).
-  Envio Cloud: **`https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql`** (deployment 6107d0a, 05/10; public, no secret).
+  Envio Cloud: **`https://indexer.dev.hyperindex.xyz/38cf597/v1/graphql`** (deployment a8289d5, 08/10, schema v3; public, no secret).
 - **Per-chain rows.** The indexer runs with `disable_default_cross_chain: true`: every table has a `chainId`
   column and the key is `(id, chainId)`. **Always filter on `chainId`** (143 = Monad, 10143 = Monad testnet,
   10 = Optimism). The same `id` (e.g. agent `"4"`) exists independently on several chains.

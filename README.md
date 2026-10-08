@@ -32,10 +32,10 @@ layer. It does three things:
 
 ## Live endpoint
 
-**`https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql`** (Envio Cloud, public, read-only; deployed 2026-10-05, 3 chains synced in 1 minute, 55 775 events).
+**`https://indexer.dev.hyperindex.xyz/38cf597/v1/graphql`** (Envio Cloud, public, read-only; deployment a8289d5 of 2026-10-08, organisation ygk94, repo ygk94/ancre-indexerv2: 3 chains synced in 2 minutes, 56 455 events).
 
 ```bash
-curl -s https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql -H 'Content-Type: application/json' \
+curl -s https://indexer.dev.hyperindex.xyz/38cf597/v1/graphql -H 'Content-Type: application/json' \
   -d '{"query":"{ ChainStats { chainId agents feedbacks refEdges selfRatings outOfRange } }"}'
 ```
 

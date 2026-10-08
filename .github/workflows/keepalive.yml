@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      ENDPOINT: https://indexer.dev.hyperindex.xyz/433cc83/v1/graphql
+      ENDPOINT: https://indexer.dev.hyperindex.xyz/38cf597/v1/graphql
     steps:
       - name: Query the indexer
         run: |
